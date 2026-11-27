@@ -1,2 +1,7 @@
 # Logs and temps
 *.log
+all_live_pages.json
+enriched_live_pages.json
+find_all_pages.js
+enrich_pages.js
+

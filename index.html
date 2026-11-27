@@ -3,25 +3,50 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>南投國中 Antigravity 專案導覽總入口</title>
+  <title>南投國中 Antigravity 專案導覽總入口網</title>
+  <meta name="description" content="南投國中 Antigravity 專案導覽總入口網，彙整全校教學、AI賦能、研習典藏與數位工具等 108+ 線上專案。">
+  
+  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome 6 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- QRCode.js CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700;900&display=swap');
+    
     body {
       font-family: 'Noto Sans TC', 'Plus Jakarta Sans', sans-serif;
     }
+    
+    .glass-nav {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+    }
+    
     .glass-card {
-      background: rgba(255, 255, 255, 0.92);
+      background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(12px);
-      border: 1px solid rgba(226, 232, 240, 0.8);
-      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(226, 232, 240, 0.9);
+      transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
     }
+    
     .glass-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
-      border-color: #93c5fd;
+      transform: translateY(-5px);
+      box-shadow: 0 20px 25px -5px rgba(30, 58, 138, 0.08), 0 10px 10px -5px rgba(30, 58, 138, 0.04);
+      border-color: #60a5fa;
     }
+    
+    .badge-campus { background-color: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; }
+    .badge-ai { background-color: #eef2ff; color: #4338ca; border: 1px solid #c7d2fe; }
+    .badge-curriculum { background-color: #ecfdf5; color: #047857; border: 1px solid #a7f3d0; }
+    .badge-archives { background-color: #faf5ff; color: #7e22ce; border: 1px solid #e9d5ff; }
+    .badge-tools { background-color: #fffbeb; color: #b45309; border: 1px solid #fde68a; }
+
     .shake {
       animation: shake 0.4s cubic-bezier(.36,.07,.19,.97) both;
     }
@@ -31,23 +56,38 @@
       30%, 50%, 70% { transform: translate3d(-6px, 0, 0); }
       40%, 60% { transform: translate3d(6px, 0, 0); }
     }
+    
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
   </style>
 </head>
-<body class="bg-gradient-to-br from-slate-50 via-sky-50 to-indigo-50 min-h-screen text-slate-800 antialiased selection:bg-indigo-500 selection:text-white">
+<body class="bg-gradient-to-br from-slate-50 via-sky-50 to-indigo-50 min-h-screen text-slate-800 antialiased selection:bg-indigo-500 selection:text-white pb-20">
 
-  <!-- 密碼驗證模態框 (NATO門禁) -->
+  <!-- 門禁密碼驗證模態 (NATO保護) -->
   <div id="passwordModal" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/80 backdrop-blur-md px-4 transition-all duration-300">
     <div id="modalBox" class="bg-white rounded-3xl shadow-2xl max-w-md w-full p-8 border border-slate-100 text-center relative overflow-hidden">
-      <!-- 頂部裝飾條 -->
       <div class="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-500"></div>
       
       <div class="w-16 h-16 bg-indigo-50 text-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-5 text-2xl shadow-inner border border-indigo-100">
         <i class="fa-solid fa-shield-halved"></i>
       </div>
       
-      <h2 class="text-2xl font-black text-slate-900 mb-2">南投國中專案導航網</h2>
+      <h2 class="text-2xl font-black text-slate-900 mb-2">南投國中專案導覽總入口</h2>
       <p class="text-slate-500 text-sm mb-6 leading-relaxed">
-        此站點整合本地 <code class="bg-slate-100 px-2 py-0.5 rounded text-indigo-600 font-mono text-xs">D:\antigravity</code> 已發布之 GitHub 專案。<br>請輸入存取密碼以繼續瀏覽。
+        本站彙整收錄 <code class="bg-slate-100 px-2 py-0.5 rounded text-indigo-600 font-mono text-xs">yaoshuchin</code> 旗下共 108+ 個已發布成果網站。<br>請輸入存取通行密碼以解鎖瀏覽。
       </p>
 
       <form id="pwdForm" onsubmit="handleUnlock(event); return false;" class="space-y-4">
@@ -55,714 +95,638 @@
           <input 
             type="password" 
             id="pwdInput" 
-            placeholder="請輸入通關密碼" 
-            autocomplete="off"
-            class="w-full px-5 py-3.5 bg-slate-50 border border-slate-200 rounded-xl text-center text-lg tracking-widest font-semibold focus:outline-none focus:ring-4 focus:ring-indigo-500/20 focus:border-indigo-600 transition"
+            placeholder="請輸入存取密碼 (預設: nato)" 
+            autocomplete="current-password"
+            class="w-full px-5 py-3.5 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-4 focus:ring-indigo-100 focus:border-indigo-600 text-center text-lg font-mono tracking-widest outline-none transition"
             required
             autofocus
           >
-          <button 
-            type="button" 
-            onclick="togglePasswordVisibility()" 
-            class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 text-sm"
-          >
-            <i id="eyeIcon" class="fa-regular fa-eye"></i>
-          </button>
         </div>
-
-        <div id="errorMsg" class="text-rose-500 text-xs font-semibold hidden flex items-center justify-center gap-1.5">
-          <i class="fa-solid fa-circle-exclamation"></i>
-          <span>密碼不正確，請重新輸入</span>
-        </div>
-
+        <p id="errorMsg" class="text-red-500 text-xs font-semibold hidden flex items-center justify-center gap-1">
+          <i class="fa-solid fa-circle-exclamation"></i> 密碼錯誤，請重新輸入！
+        </p>
         <button 
-          type="button" 
-          onclick="handleUnlock(event)" 
-          class="w-full py-3.5 px-6 bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-700 hover:to-blue-700 text-white font-bold rounded-xl shadow-lg shadow-indigo-500/25 active:scale-[0.98] transition flex items-center justify-center gap-2 cursor-pointer"
+          type="submit" 
+          id="unlockBtn"
+          class="w-full py-3.5 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold rounded-2xl shadow-lg shadow-indigo-200 transition duration-200 flex items-center justify-center gap-2 cursor-pointer"
         >
-          <span>驗證並進入</span>
-          <i class="fa-solid fa-arrow-right text-sm"></i>
+          <i class="fa-solid fa-lock-open text-sm"></i> 驗證並解鎖入口網
         </button>
       </form>
-
-      <div class="mt-6 pt-5 border-t border-slate-100 text-xs text-slate-400 flex items-center justify-center gap-1">
-        <i class="fa-solid fa-lock text-[10px]"></i>
-        <span>密碼防護已啟用 · 投中資訊工作小組</span>
+      <div class="mt-6 pt-5 border-t border-slate-100 text-xs text-slate-400 flex items-center justify-between">
+        <span>南投縣立南投國民中學</span>
+        <span class="font-mono">SESSION-SECURED</span>
       </div>
     </div>
   </div>
 
-  <!-- 主內容容器 (預設鎖定隱藏) -->
-  <div id="mainContent" class="opacity-0 pointer-events-none transition-opacity duration-500 pb-20">
-    
-    <!-- 頂部導航列 -->
-    <header class="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-slate-200/80 shadow-sm">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between py-3">
+  <!-- 頂部浮動導航列 -->
+  <nav class="sticky top-0 z-40 glass-nav">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 sm:h-20">
+        <!-- Logo 與標題 -->
         <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-blue-500 text-white flex items-center justify-center text-xl shadow-md shadow-indigo-500/20">
-            <i class="fa-solid fa-compass"></i>
+          <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-gradient-to-tr from-blue-600 via-indigo-600 to-cyan-500 flex items-center justify-center text-white shadow-md shadow-indigo-200">
+            <i class="fa-solid fa-compass text-xl"></i>
           </div>
           <div>
             <div class="flex items-center gap-2">
-              <span class="font-extrabold text-slate-900 text-lg tracking-tight">南投國中 Antigravity 專案導覽總入口</span>
-              <span class="bg-indigo-100 text-indigo-700 text-xs px-2 py-0.5 rounded-full font-bold">已同步 23 個網站</span>
+              <span class="text-lg sm:text-xl font-black bg-gradient-to-r from-blue-700 via-indigo-700 to-cyan-600 bg-clip-text text-transparent">
+                南投國中 Antigravity
+              </span>
+              <span class="px-2 py-0.5 text-[11px] font-bold rounded-full bg-indigo-100 text-indigo-700 border border-indigo-200">
+                Hub v2.0
+              </span>
             </div>
-            <p class="text-xs text-slate-500">來源目錄：<code>D:\antigravity</code> · 實時 GitHub Pages 狀態檢核通過</p>
+            <p class="text-[11px] sm:text-xs text-slate-500 font-medium">全校雲端成果網站一站式導覽入口網</p>
           </div>
         </div>
 
-        <div class="flex items-center gap-3">
+        <!-- 導航列右側操作 -->
+        <div class="flex items-center gap-2 sm:gap-3">
           <a 
-            href="https://github.com/yaoshuchin" 
+            href="https://github.com/yaoshuchin/1151127-antigravity-hub" 
             target="_blank" 
-            class="hidden sm:inline-flex items-center gap-2 px-3 py-1.5 text-xs font-semibold text-slate-600 hover:text-slate-900 bg-slate-100 hover:bg-slate-200 rounded-lg transition"
+            rel="noopener noreferrer"
+            class="px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl text-xs sm:text-sm font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-100 border border-slate-200 transition flex items-center gap-1.5"
+            title="查看本入口網 GitHub 儲存庫"
           >
-            <i class="fa-brands fa-github text-sm"></i>
-            <span>GitHub Profile</span>
+            <i class="fa-brands fa-github text-base"></i>
+            <span class="hidden sm:inline">儲存庫</span>
           </a>
           <button 
             onclick="lockSession()" 
-            class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-rose-600 hover:bg-rose-50 border border-rose-200 rounded-lg transition"
-            title="重新鎖定此頁面"
+            class="px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl text-xs sm:text-sm font-semibold text-rose-600 hover:bg-rose-50 border border-rose-200 transition flex items-center gap-1.5"
+            title="安全重新鎖定"
           >
             <i class="fa-solid fa-lock text-xs"></i>
-            <span>重新鎖定</span>
+            <span class="hidden sm:inline">重新鎖定</span>
           </button>
         </div>
       </div>
-    </header>
+    </div>
+  </nav>
 
-    <!-- 主區塊 Hero -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
-      
-      <!-- 統計資訊板 -->
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-        <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm flex items-center gap-4">
-          <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center text-xl">
-            <i class="fa-solid fa-globe"></i>
-          </div>
-          <div>
-            <div class="text-2xl font-black text-slate-900 leading-tight" id="countTotal">23</div>
-            <div class="text-xs font-medium text-slate-500">GitHub 發布網站</div>
-          </div>
-        </div>
+  <!-- 主內容容器 -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-12">
 
-        <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm flex items-center gap-4">
-          <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-xl">
-            <i class="fa-solid fa-circle-check"></i>
-          </div>
-          <div>
-            <div class="text-2xl font-black text-emerald-600 leading-tight">100%</div>
-            <div class="text-xs font-medium text-slate-500">連線檢核 (HTTP 200)</div>
-          </div>
-        </div>
+    <!-- 頂部橫幅 Hero Section -->
+    <div class="relative rounded-3xl bg-gradient-to-r from-slate-900 via-indigo-950 to-blue-950 text-white p-6 sm:p-10 shadow-xl shadow-indigo-950/20 mb-8 overflow-hidden">
+      <!-- 裝飾背景光暈 -->
+      <div class="absolute -right-16 -top-16 w-80 h-80 bg-blue-500/20 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute -left-16 -bottom-16 w-80 h-80 bg-indigo-500/20 rounded-full blur-3xl pointer-events-none"></div>
 
-        <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm flex items-center gap-4">
-          <div class="w-12 h-12 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-xl">
-            <i class="fa-solid fa-folder-tree"></i>
-          </div>
-          <div>
-            <div class="text-2xl font-black text-slate-900 leading-tight">4 大類</div>
-            <div class="text-xs font-medium text-slate-500">涵蓋領域</div>
-          </div>
+      <div class="relative z-10 max-w-3xl">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/20 border border-indigo-400/30 text-indigo-200 text-xs font-semibold mb-4 backdrop-blur-sm">
+          <i class="fa-solid fa-circle-check text-emerald-400"></i>
+          <span>108 個站點 100% 在線運行中</span>
         </div>
-
-        <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm flex items-center gap-4">
-          <div class="w-12 h-12 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center text-xl">
-            <i class="fa-solid fa-key"></i>
-          </div>
-          <div>
-            <div class="text-2xl font-black text-amber-600 leading-tight">NATO</div>
-            <div class="text-xs font-medium text-slate-500">專案存取認證機制</div>
-          </div>
-        </div>
+        <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight mb-3">
+          南投國中數位成果與教學專案總目錄
+        </h1>
+        <p class="text-slate-300 text-sm sm:text-base leading-relaxed mb-6">
+          收錄校務行政、AI 教學工具、學科公開課、研習數位典藏鏡像及課堂互動教材，支援全站即時快搜、手機 QR Code 掃描與站內即時預覽。
+        </p>
       </div>
 
-      <!-- 搜尋與篩選列 -->
-      <div class="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200 shadow-sm mb-8 space-y-4">
-        <div class="flex flex-col sm:flex-row gap-3">
-          <div class="relative flex-1">
-            <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
-            <input 
-              type="text" 
-              id="searchInput" 
-              oninput="renderCards()" 
-              placeholder="搜尋資料夾名稱、網站標題、網址關鍵字 (例如: 隔宿、會考、AI、公開課)..." 
-              class="w-full pl-11 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600 transition"
-            >
+      <!-- 統計數據卡片列 -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 pt-6 border-t border-white/10">
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-4 backdrop-blur-sm">
+          <div class="text-xs text-slate-300 font-medium mb-1 flex items-center gap-1.5">
+            <i class="fa-solid fa-globe text-cyan-400"></i> 線上站點總數
           </div>
+          <div class="text-2xl sm:text-3xl font-black text-white" id="statTotal">108</div>
+        </div>
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-4 backdrop-blur-sm">
+          <div class="text-xs text-slate-300 font-medium mb-1 flex items-center gap-1.5">
+            <i class="fa-solid fa-layer-group text-indigo-400"></i> 主題分類
+          </div>
+          <div class="text-2xl sm:text-3xl font-black text-white">5 大領域</div>
+        </div>
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-4 backdrop-blur-sm">
+          <div class="text-xs text-slate-300 font-medium mb-1 flex items-center gap-1.5">
+            <i class="fa-solid fa-star text-amber-400"></i> 我的最愛收藏
+          </div>
+          <div class="text-2xl sm:text-3xl font-black text-amber-300" id="statFavorites">0</div>
+        </div>
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-4 backdrop-blur-sm">
+          <div class="text-xs text-slate-300 font-medium mb-1 flex items-center gap-1.5">
+            <i class="fa-solid fa-bolt text-emerald-400"></i> 服務可用率
+          </div>
+          <div class="text-2xl sm:text-3xl font-black text-emerald-400">100%</div>
+        </div>
+      </div>
+    </div>
 
-          <div class="flex items-center gap-2">
+    <!-- 搜尋與控制工具列 -->
+    <div class="bg-white rounded-3xl p-4 sm:p-6 shadow-sm border border-slate-200/80 mb-6 space-y-4">
+      <!-- 搜尋框與檢視切換 -->
+      <div class="flex flex-col sm:flex-row gap-3 items-stretch sm:items-center justify-between">
+        <!-- 搜尋列 -->
+        <div class="relative flex-1">
+          <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </div>
+          <input 
+            type="text" 
+            id="searchInput" 
+            oninput="handleSearch()"
+            placeholder="搜尋站點名稱、簡介、代號或主題關鍵字 (例如: 露營、AI、數學、橘子老師)..." 
+            class="w-full pl-11 pr-10 py-3 rounded-2xl bg-slate-50 border border-slate-200 focus:bg-white focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 text-sm font-medium transition outline-none"
+          >
+          <button 
+            id="clearSearchBtn" 
+            onclick="clearSearch()"
+            class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-400 hover:text-slate-600 hidden"
+          >
+            <i class="fa-solid fa-circle-xmark text-sm"></i>
+          </button>
+        </div>
+
+        <!-- 排序方式與顯示切換 -->
+        <div class="flex items-center gap-2">
+          <!-- 排序選單 -->
+          <div class="relative">
             <select 
               id="sortSelect" 
-              onchange="renderCards()" 
-              class="px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-700 focus:outline-none focus:border-indigo-600"
+              onchange="handleSort()"
+              class="appearance-none bg-slate-50 border border-slate-200 text-slate-700 text-xs sm:text-sm font-semibold rounded-2xl pl-3.5 pr-8 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 cursor-pointer"
             >
-              <option value="date-desc">資料夾日期：由新到舊</option>
-              <option value="date-asc">資料夾日期：由舊到新</option>
-              <option value="title-asc">網站名稱排序</option>
+              <option value="date-desc">發布日期 (最新優先)</option>
+              <option value="date-asc">發布日期 (由舊到新)</option>
+              <option value="name-asc">專案代號 (A - Z)</option>
+              <option value="title-asc">專案標題排序</option>
             </select>
+            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2.5 text-slate-400">
+              <i class="fa-solid fa-chevron-down text-xs"></i>
+            </div>
+          </div>
 
+          <!-- 檢視模式切換 (網格 / 清單) -->
+          <div class="flex bg-slate-100 p-1 rounded-2xl border border-slate-200">
             <button 
-              id="viewToggleBtn"
-              onclick="toggleViewMode()" 
-              class="px-3.5 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition"
-              title="切換檢視模式"
+              id="viewGridBtn" 
+              onclick="setViewMode('grid')" 
+              class="px-3 py-2 rounded-xl text-xs sm:text-sm font-bold bg-white text-indigo-700 shadow-sm transition"
+              title="卡片網格檢視"
             >
-              <i id="viewIcon" class="fa-solid fa-table-cells-large"></i>
-              <span id="viewText">卡片檢視</span>
+              <i class="fa-solid fa-grip"></i>
+            </button>
+            <button 
+              id="viewListBtn" 
+              onclick="setViewMode('list')" 
+              class="px-3 py-2 rounded-xl text-xs sm:text-sm font-semibold text-slate-500 hover:text-slate-800 transition"
+              title="條列清單檢視"
+            >
+              <i class="fa-solid fa-list"></i>
             </button>
           </div>
         </div>
-
-        <!-- 類別標籤按鈕 -->
-        <div class="flex flex-wrap items-center gap-2 pt-2 border-t border-slate-100" id="categoryTabs">
-          <button 
-            onclick="setCategory('全部')" 
-            data-cat="全部"
-            class="cat-pill active px-3.5 py-1.5 rounded-lg text-xs font-bold transition bg-indigo-600 text-white shadow-sm"
-          >
-            全部 (23)
-          </button>
-          <button 
-            onclick="setCategory('AI與科技創新')" 
-            data-cat="AI與科技創新"
-            class="cat-pill px-3.5 py-1.5 rounded-lg text-xs font-semibold text-slate-600 hover:bg-slate-100 transition"
-          >
-            🤖 AI與科技創新
-          </button>
-          <button 
-            onclick="setCategory('校務行政與規章')" 
-            data-cat="校務行政與規章"
-            class="cat-pill px-3.5 py-1.5 rounded-lg text-xs font-semibold text-slate-600 hover:bg-slate-100 transition"
-          >
-            🏫 校務行政與規章
-          </button>
-          <button 
-            onclick="setCategory('公開觀課與評鑑')" 
-            data-cat="公開觀課與評鑑"
-            class="cat-pill px-3.5 py-1.5 rounded-lg text-xs font-semibold text-slate-600 hover:bg-slate-100 transition"
-          >
-            📑 公開觀課與評鑑
-          </button>
-          <button 
-            onclick="setCategory('校園活動與安全')" 
-            data-cat="校園活動與安全"
-            class="cat-pill px-3.5 py-1.5 rounded-lg text-xs font-semibold text-slate-600 hover:bg-slate-100 transition"
-          >
-            ⛺ 校園活動與安全
-          </button>
-        </div>
       </div>
 
-      <!-- 搜尋結果統計 -->
-      <div class="flex items-center justify-between text-xs text-slate-500 mb-4 px-1">
-        <span>顯示 <strong id="visibleCount" class="text-indigo-600 font-bold">23</strong> 個網站專案</span>
-        <span class="text-slate-400">點擊卡片連結可直接開啟對應 GitHub Pages</span>
+      <!-- 分類標籤頁切換列 Filter Chips -->
+      <div class="flex items-center gap-2 overflow-x-auto pb-1 pt-1 no-scrollbar text-xs sm:text-sm font-semibold" id="categoryTabs">
+        <!-- JS 動態渲染標籤 -->
       </div>
+    </div>
 
-      <!-- 卡片網格檢視容器 -->
-      <div id="cardsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
-
-      <!-- 表格檢視容器 (預設隱藏) -->
-      <div id="tableView" class="hidden bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
-        <div class="overflow-x-auto">
-          <table class="w-full text-left text-xs text-slate-600">
-            <thead class="bg-slate-50 text-slate-700 uppercase font-bold text-[11px] border-b border-slate-200">
-              <tr>
-                <th class="px-5 py-3.5">#</th>
-                <th class="px-5 py-3.5">本地資料夾名稱</th>
-                <th class="px-5 py-3.5">網站標題與類型</th>
-                <th class="px-5 py-3.5">GitHub Pages 網址</th>
-                <th class="px-5 py-3.5 text-center">狀態</th>
-                <th class="px-5 py-3.5 text-right">操作</th>
-              </tr>
-            </thead>
-            <tbody id="tableBody" class="divide-y divide-slate-100"></tbody>
-          </table>
-        </div>
+    <!-- 即時狀態提示列 -->
+    <div class="flex items-center justify-between text-xs sm:text-sm text-slate-500 font-medium px-2 mb-4">
+      <div>
+        顯示 <span id="showingCount" class="font-bold text-slate-800">108</span> 個專案網站
+        <span id="activeFilterBadge" class="ml-1 text-xs px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 hidden"></span>
       </div>
-
-      <!-- 無結果狀態 -->
-      <div id="noResults" class="hidden py-16 text-center">
-        <div class="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4 text-slate-400 text-2xl">
-          <i class="fa-solid fa-folder-open"></i>
-        </div>
-        <p class="text-slate-700 font-semibold mb-1">找不到相符的網站專案</p>
-        <p class="text-slate-400 text-xs">請嘗試更換搜尋關鍵字或分類標籤</p>
+      <div class="text-xs text-slate-400">
+        點擊 <i class="fa-regular fa-star text-amber-500"></i> 可加為常用最愛
       </div>
+    </div>
 
-    </main>
+    <!-- 網站展示容器 (網格視圖) -->
+    <div id="gridContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <!-- JS 動態生成卡片 -->
+    </div>
 
-    <!-- 頁尾 -->
-    <footer class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16 pt-8 border-t border-slate-200 text-center text-xs text-slate-400">
-      <p class="mb-2 font-medium text-slate-500">南投縣立南投國民中學 · 資訊環境建設與專案導航入口</p>
-      <p>資料夾路徑：<code>D:\antigravity</code> · 密碼防護鎖：<code>nato</code> · 本站託管於 GitHub Pages</p>
-    </footer>
+    <!-- 網站展示容器 (清單條列視圖) -->
+    <div id="listContainer" class="hidden bg-white rounded-3xl border border-slate-200/90 shadow-sm overflow-hidden">
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="bg-slate-50/80 border-b border-slate-200 text-xs font-bold text-slate-500 uppercase tracking-wider">
+              <th class="py-3.5 px-4 w-12 text-center">#</th>
+              <th class="py-3.5 px-4">網站名稱與簡介</th>
+              <th class="py-3.5 px-4 w-40">分類</th>
+              <th class="py-3.5 px-4 w-28">日期</th>
+              <th class="py-3.5 px-4 w-48 text-right">功能操作</th>
+            </tr>
+          </thead>
+          <tbody id="listTableBody" class="divide-y divide-slate-100 text-sm">
+            <!-- JS 動態生成表格列 -->
+          </tbody>
+        </table>
+      </div>
+    </div>
 
+    <!-- 無搜尋結果提示 -->
+    <div id="noResults" class="hidden py-16 text-center">
+      <div class="w-16 h-16 bg-slate-100 text-slate-400 rounded-3xl flex items-center justify-center mx-auto mb-4 text-2xl">
+        <i class="fa-solid fa-folder-open"></i>
+      </div>
+      <h3 class="text-base font-bold text-slate-700 mb-1">找不到符合的專案網站</h3>
+      <p class="text-slate-400 text-xs mb-4">請嘗試更換關鍵字或點擊下方按鈕重設篩選</p>
+      <button 
+        onclick="clearSearch(); setCategory('all');" 
+        class="px-4 py-2 bg-indigo-50 hover:bg-indigo-100 text-indigo-600 rounded-xl text-xs font-bold transition"
+      >
+        重設所有搜尋條件
+      </button>
+    </div>
+
+  </main>
+
+  <!-- QR Code 彈窗 Modal -->
+  <div id="qrModal" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm px-4 hidden transition-opacity duration-200">
+    <div class="bg-white rounded-3xl shadow-2xl max-w-sm w-full p-6 text-center border border-slate-100 relative">
+      <button onclick="closeQrModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 w-8 h-8 rounded-full flex items-center justify-center bg-slate-100 transition">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <div class="w-12 h-12 bg-indigo-50 text-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-3 text-xl">
+        <i class="fa-solid fa-qrcode"></i>
+      </div>
+      <h3 id="qrModalTitle" class="text-base font-bold text-slate-900 mb-1 line-clamp-1">手機即時掃描</h3>
+      <p class="text-xs text-slate-500 mb-4">使用相機或 LINE 掃描 QR 碼，即可以行動裝置體驗此網站</p>
+      
+      <div class="bg-slate-50 p-4 rounded-2xl inline-block border border-slate-200 mb-4 shadow-inner">
+        <div id="qrcodeBox" class="flex items-center justify-center"></div>
+      </div>
+      
+      <div class="flex gap-2">
+        <a id="qrOpenBtn" href="#" target="_blank" class="flex-1 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-bold transition flex items-center justify-center gap-1.5">
+          <i class="fa-solid fa-arrow-up-right-from-square"></i> 開啟網站
+        </a>
+        <button onclick="copyCurrentQrUrl()" class="px-4 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-bold transition">
+          <i class="fa-regular fa-copy"></i>
+        </button>
+      </div>
+    </div>
   </div>
 
-  <!-- 吐司通知提示 -->
-  <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-16 opacity-0 transition-all duration-300 bg-slate-900 text-white px-4 py-2.5 rounded-xl shadow-xl text-xs font-semibold flex items-center gap-2">
-    <i class="fa-solid fa-circle-check text-emerald-400"></i>
-    <span id="toastMsg">已複製網址到剪貼簿</span>
+  <!-- 站內預覽彈窗 Modal (Iframe) -->
+  <div id="previewModal" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 backdrop-blur-sm p-2 sm:p-6 hidden transition-opacity duration-200">
+    <div class="bg-white rounded-3xl shadow-2xl w-full max-w-6xl h-[92vh] flex flex-col overflow-hidden border border-slate-200">
+      <!-- 彈窗頂部工具列 -->
+      <div class="bg-slate-900 text-white px-5 py-3.5 flex items-center justify-between">
+        <div class="flex items-center gap-3 overflow-hidden">
+          <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center text-xs shrink-0">
+            <i class="fa-solid fa-display"></i>
+          </div>
+          <div class="overflow-hidden">
+            <h4 id="previewModalTitle" class="text-sm font-bold truncate">站點預覽</h4>
+            <p id="previewModalUrl" class="text-[11px] text-slate-400 font-mono truncate">url</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2 shrink-0">
+          <a id="previewOpenTabBtn" href="#" target="_blank" class="px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-xs font-medium transition flex items-center gap-1">
+            <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i> 新分頁開啟
+          </a>
+          <button onclick="closePreviewModal()" class="w-8 h-8 rounded-lg bg-white/10 hover:bg-rose-600 text-white flex items-center justify-center transition">
+            <i class="fa-solid fa-xmark text-sm"></i>
+          </button>
+        </div>
+      </div>
+      <!-- Iframe 區域 -->
+      <div class="flex-1 bg-slate-100 relative">
+        <div id="previewLoading" class="absolute inset-0 flex items-center justify-center bg-white z-10">
+          <div class="text-center">
+            <div class="w-10 h-10 border-4 border-indigo-200 border-t-indigo-600 rounded-full animate-spin mx-auto mb-3"></div>
+            <p class="text-xs text-slate-500 font-medium">載入網站預覽中...</p>
+          </div>
+        </div>
+        <iframe id="previewIframe" src="" class="w-full h-full border-0" onload="document.getElementById('previewLoading').classList.add('hidden');"></iframe>
+      </div>
+    </div>
   </div>
 
+  <!-- Toast 通知提示 -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
+    <div class="bg-slate-900 text-white px-4 py-3 rounded-2xl shadow-xl flex items-center gap-2.5 text-xs font-bold border border-slate-800">
+      <i id="toastIcon" class="fa-solid fa-circle-check text-emerald-400"></i>
+      <span id="toastMsg">通知訊息</span>
+    </div>
+  </div>
+
+  <!-- 回頂部按鈕 -->
+  <button 
+    id="backToTopBtn" 
+    onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
+    class="fixed bottom-6 left-6 z-30 w-11 h-11 bg-white/90 hover:bg-white text-slate-700 hover:text-indigo-600 rounded-2xl shadow-lg border border-slate-200 flex items-center justify-center text-sm transition transform translate-y-20 opacity-0"
+    title="回到頂部"
+  >
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
+  <!-- 資料載入與主腳本 -->
   <script>
-    // 專案原始資料 (23項全檢核)
-    const projects = [
-  {
-    "id": 23,
-    "folderName": "115南投國中各科評量教師輪值表",
-    "title": "南投國中 115學年度第1學期 各科評量教師輪值與教學進度查詢系統",
-    "pagesUrl": "https://yaoshuchin.github.io/1151125-nantou-exam-roster/",
-    "repoUrl": "https://github.com/yaoshuchin/1151125-nantou-exam-roster",
-    "date": "115學年度",
-    "category": "校務行政與規章",
-    "color": "blue"
-  },
-  {
-    "id": 22,
-    "folderName": "1151127簡怡芳教案",
-    "title": "簡怡芳實習教師 教學計畫成果網頁 | Dream Jobs, Two Sides! ｜ 南投國中英語資源班",
-    "pagesUrl": "https://yaoshuchin.github.io/1151127-jianyifang-lesson-plan/",
-    "repoUrl": "https://github.com/yaoshuchin/1151127-jianyifang-lesson-plan",
-    "date": "115.11.27",
-    "category": "公開觀課與評鑑",
-    "color": "amber"
-  },
-  {
-    "id": 21,
-    "folderName": "1151127程瑋昱-AI未來學習力",
-    "title": "未來教師 AI 力 · AI未來學習力",
-    "pagesUrl": "https://yaoshuchin.github.io/1151127-chengweiyu-ai-learning/",
-    "repoUrl": "https://github.com/yaoshuchin/1151127-chengweiyu-ai-learning",
-    "date": "115.11.27",
-    "category": "AI與科技創新",
-    "color": "indigo"
-  },
-  {
-    "id": 20,
-    "folderName": "115112716學年度國中教育會考",
-    "title": "南投國中 · 116學年度國中教育會考及全國高級中等學校與專科學校五年制適性入學重要日程表",
-    "pagesUrl": "https://yaoshuchin.github.io/1151127-116-cap-admission-schedule/",
-    "repoUrl": "https://github.com/yaoshuchin/1151127-116-cap-admission-schedule",
-    "date": "115.11.27",
-    "category": "校務行政與規章",
-    "color": "blue"
-  },
-  {
-    "id": 19,
-    "folderName": "1151126南投國中體班評鑑",
-    "title": "南投縣立南投國民中學 115學年度體育班評鑑成果資訊網",
-    "pagesUrl": "https://yaoshuchin.github.io/1151126-nantou-pe-eval/",
-    "repoUrl": "https://github.com/yaoshuchin/1151126-nantou-pe-eval",
-    "date": "115.11.26",
-    "category": "公開觀課與評鑑",
-    "color": "amber"
-  },
-  {
-    "id": 18,
-    "folderName": "1151124汪憶-AI設計者",
-    "title": "AI賦能教學創新雙核心平台 | 製作動態視覺化APP × AI任務設計師",
-    "pagesUrl": "https://yaoshuchin.github.io/1151124-wangyi-ai-task-designer/",
-    "repoUrl": "https://github.com/yaoshuchin/1151124-wangyi-ai-task-designer",
-    "date": "115.11.24",
-    "category": "AI與科技創新",
-    "color": "indigo"
-  },
-  {
-    "id": 14,
-    "folderName": "1151123AI導入課程-史君潔",
-    "title": "AI導入課程與評量——AI素養融入教學與學生學習的實務架構 | 施君潔主任",
-    "pagesUrl": "https://yaoshuchin.github.io/1151123-ai-curriculum-framework/",
-    "repoUrl": "https://github.com/yaoshuchin/1151123-ai-curriculum-framework",
-    "date": "115.11.23",
-    "category": "AI與科技創新",
-    "color": "indigo"
-  },
-  {
-    "id": 15,
-    "folderName": "1151123南投國中獎懲辦法",
-    "title": "南投縣立南投國民中學 學生獎懲規定暨獎懲要點 互動查詢系統",
-    "pagesUrl": "https://yaoshuchin.github.io/1151123-nantou-student-regulations/",
-    "repoUrl": "https://github.com/yaoshuchin/1151123-nantou-student-regulations",
-    "date": "115.11.23",
-    "category": "校務行政與規章",
-    "color": "blue"
-  },
-  {
-    "id": 17,
-    "folderName": "1151123投中教師座位表",
-    "title": "南投縣立南投國民中學 115學年度教師座位與分機互動查詢系統",
-    "pagesUrl": "https://yaoshuchin.github.io/1151123-nantou-teachers-seating/",
-    "repoUrl": "https://github.com/yaoshuchin/1151123-nantou-teachers-seating",
-    "date": "115.11.23",
-    "category": "校務行政與規章",
-    "color": "blue"
-  },
-  {
-    "id": 16,
-    "folderName": "1151123投中304流程圖",
-    "title": "南投國中 304 班｜AI旅程照片生成器 & 流程圖規格庫",
-    "pagesUrl": "https://yaoshuchin.github.io/1151123-touzhong-304-flowchart/",
-    "repoUrl": "https://github.com/yaoshuchin/1151123-touzhong-304-flowchart",
-    "date": "115.11.23",
-    "category": "AI與科技創新",
-    "color": "indigo"
-  },
-  {
-    "id": 13,
-    "folderName": "1151123115國中數學領域數位科技推動自主學習探究",
-    "title": "115 國中數學領域 數位科技推動自主學習探究 (AI × APP × GAS)",
-    "pagesUrl": "https://yaoshuchin.github.io/1151123-math-ai-app-gas/",
-    "repoUrl": "https://github.com/yaoshuchin/1151123-math-ai-app-gas",
-    "date": "115.11.23",
-    "category": "AI與科技創新",
-    "color": "indigo"
-  },
-  {
-    "id": 12,
-    "folderName": "1151120投中隔宿露營名單",
-    "title": "南投國中 115學年度二年級隔宿露營名冊與編組查詢系統（資安保護版）",
-    "pagesUrl": "https://yaoshuchin.github.io/1151120-nantou-camping-roster/",
-    "repoUrl": "https://github.com/yaoshuchin/1151120-nantou-camping-roster",
-    "date": "115.11.20",
-    "category": "校園活動與安全",
-    "color": "emerald"
-  },
-  {
-    "id": 11,
-    "folderName": "1151120光環反應燈",
-    "title": "光環反應機模擬器 - 斗六國中王富昌老師原創教具",
-    "pagesUrl": "https://yaoshuchin.github.io/1151120-halo-reaction-light/",
-    "repoUrl": "https://github.com/yaoshuchin/1151120-halo-reaction-light",
-    "date": "115.11.20",
-    "category": "AI與科技創新",
-    "color": "indigo"
-  },
-  {
-    "id": 10,
-    "folderName": "1151118南投國中社團點名",
-    "title": "南投國中 115學年度 社團點名系統",
-    "pagesUrl": "https://yaoshuchin.github.io/1151118-nantou-club-rollcall/",
-    "repoUrl": "https://github.com/yaoshuchin/1151118-nantou-club-rollcall",
-    "date": "115.11.18",
-    "category": "校務行政與規章",
-    "color": "blue"
-  },
-  {
-    "id": 9,
-    "folderName": "1151113南投國中藝材班訪視",
-    "title": "115南投國中美術班評鑑 - 孕育一棵藝術大樹",
-    "pagesUrl": "https://yaoshuchin.github.io/1151113-nantou-art-eval/",
-    "repoUrl": "https://github.com/yaoshuchin/1151113-nantou-art-eval",
-    "date": "115.11.13",
-    "category": "公開觀課與評鑑",
-    "color": "amber"
-  },
-  {
-    "id": 7,
-    "folderName": "1151112投中伯華公開觀課表",
-    "title": "南投國中情緒調節課程公開課表分析 | 石伯華老師教學演示成果",
-    "pagesUrl": "https://yaoshuchin.github.io/1151112-nantou-pohua-observation/",
-    "repoUrl": "https://github.com/yaoshuchin/1151112-nantou-pohua-observation",
-    "date": "115.11.12",
-    "category": "公開觀課與評鑑",
-    "color": "amber"
-  },
-  {
-    "id": 8,
-    "folderName": "1151112生命教育娋",
-    "title": "停止焦慮三大科學動作導引系統",
-    "pagesUrl": "https://yaoshuchin.github.io/1151112-neuro-calm/",
-    "repoUrl": "https://github.com/yaoshuchin/1151112-neuro-calm",
-    "date": "115.11.12",
-    "category": "校園活動與安全",
-    "color": "emerald"
-  },
-  {
-    "id": 6,
-    "folderName": "1151109鳳鳴國中公開課s",
-    "title": "鳳鳴國中 115.11.9 科技領域公開授課與觀議課訪視 數位成果旗艦專區",
-    "pagesUrl": "https://yaoshuchin.github.io/1151109-fengming-openclass/",
-    "repoUrl": "https://github.com/yaoshuchin/1151109-fengming-openclass",
-    "date": "115.11.09",
-    "category": "公開觀課與評鑑",
-    "color": "amber"
-  },
-  {
-    "id": 4,
-    "folderName": "1151102南投國中校園安全專頁",
-    "title": "南投縣立南投國中 學務處校園安全專頁 ｜ 115學年度安全防衛旗艦網",
-    "pagesUrl": "https://yaoshuchin.github.io/115-nantou-jh-campus-safety/",
-    "repoUrl": "https://github.com/yaoshuchin/115-nantou-jh-campus-safety",
-    "date": "115.11.02",
-    "category": "校園活動與安全",
-    "color": "emerald"
-  },
-  {
-    "id": 5,
-    "folderName": "1151102投中環境教育",
-    "title": "南投縣立南投國中 115學年度環境教育考評成果旗艦網",
-    "pagesUrl": "https://yaoshuchin.github.io/115-nantou-jh-eco-education/",
-    "repoUrl": "https://github.com/yaoshuchin/115-nantou-jh-eco-education",
-    "date": "115.11.02",
-    "category": "校園活動與安全",
-    "color": "emerald"
-  },
-  {
-    "id": 3,
-    "folderName": "1151030柏華公開課-面對情緒",
-    "title": "石柏華公開觀議課 ｜ 南投國中 115學年度 SEL社會情緒學習公開授課與議課研討成果旗艦網",
-    "pagesUrl": "https://yaoshuchin.github.io/1151030-bohua-sel-open-class/",
-    "repoUrl": "https://github.com/yaoshuchin/1151030-bohua-sel-open-class",
-    "date": "115.10.30",
-    "category": "公開觀課與評鑑",
-    "color": "amber"
-  },
-  {
-    "id": 2,
-    "folderName": "1151029國樂請假名單",
-    "title": "國中生活科技：設計與製作 ── 三視圖 · 手繪圖 · 數位製圖 · 微型椅子 | 南投國中",
-    "pagesUrl": "https://yaoshuchin.github.io/living-technology-micro-chair/",
-    "repoUrl": "https://github.com/yaoshuchin/living-technology-micro-chair",
-    "date": "115.10.29",
-    "category": "校務行政與規章",
-    "color": "blue"
-  },
-  {
-    "id": 1,
-    "folderName": "1151019二年級隔宿露營",
-    "title": "南投國中 115 學年度二年級戶外教育（隔宿露營）教學簡報",
-    "pagesUrl": "https://yaoshuchin.github.io/115-nantou-camping-guide/",
-    "repoUrl": "https://github.com/yaoshuchin/115-nantou-camping-guide",
-    "date": "115.10.19",
-    "category": "校園活動與安全",
-    "color": "emerald"
-  }
-];
+    // 專案資料庫 (共 108 站點)
+    const ALL_PROJECTS = [{"id":1,"name":"rpg-game-20261104","title":"國中生-國防教育｜RPG 冒險×對錯快判","desc":"南投國中及教育創新成果專案：rpg-game-20261104。提供線上即時瀏覽與教育資源整合。","pagesUrl":"https://yaoshuchin.github.io/rpg-game-20261104/","repoUrl":"https://github.com/yaoshuchin/rpg-game-20261104","date":"2026.11.04","category":"互動教材與數位工具","categoryKey":"tools","badgeColor":"amber","icon":"fa-gamepad"},{"id":2,"name":"nantou-ai-literacy","title":"南投縣 115 學年度 AI 素養種子教師培訓研習成果網","desc":"南投縣 115 學年度 AI 素養種子教師研習成果展示系統 - 日常生活中的 AI 教材及教學資源、數位鑑識與媒體識讀指南、探究式學習與多元評量命題庫。","pagesUrl":"https://yaoshuchin.github.io/nantou-ai-literacy/","repoUrl":"https://github.com/yaoshuchin/nantou-ai-literacy","date":"2026-11-17","category":"研習數位典藏與看板","categoryKey":"archives","badgeColor":"purple","icon":"fa-box-archive"},{"id":3,"name":"education-action-profile","title":"愛，讓孩子比昨天更優秀｜董勳遠","desc":"董勳遠｜教育行動者個人誌","pagesUrl":"https://yaoshuchin.github.io/education-action-profile/","repoUrl":"https://github.com/yaoshuchin/education-action-profile","date":"2026-11-16","category":"投中校務與班級成果","categoryKey":"campus","badgeColor":"blue","icon":"fa-school"},{"id":4,"name":"nmns-preserved-flower-showcase","title":"當數學遇見永生花：幾何與植物美學的璀璨交織 ｜ 南投國中數學領域校內教師研習成果網","desc":"南投國中數學領域跨領域手作課程成果展：從幾何結構到空間美學，親手打造專屬的植物藝術。","pagesUrl":"https://yaoshuchin.github.io/nmns-preserved-flower-showcase/","repoUrl":"https://github.com/yaoshuchin/nmns-preserved-flower-showcase","date":"2026-11-16","category":"投中校務與班級成果","categoryKey":"campus","badgeColor":"blue","icon":"fa-school"},{"id":5,"name":"tung-principal-education-profile","title":"主任的教育行動誌｜董勳遠","desc":"董勳遠主任個人教育資歷與教育行動誌。","pagesUrl":"https://yaoshuchin.github.io/tung-principal-education-profile/","repoUrl":"https://github.com/yaoshuchin/tung-principal-education-profile","date":"2026-11-16","category":"投中校務與班級成果","categoryKey":"campus","badgeColor":"blue","icon":"fa-school"},{"id":6,"name":"ai-notion-elevator","title":"AI 大樓：一張 Notion 鑰匙卡搭三台電梯","desc":"AI 大樓：一張 Notion 鑰匙卡搭三台電梯（含門禁密碼保護）","pagesUrl":"https://yaoshuchin.github.io/ai-notion-elevator/","repoUrl":"https://github.com/yaoshuchin/ai-notion-elevator","date":"2026-11-08","category":"AI教學與行政賦能","categoryKey":"ai","badgeColor":"indigo","icon":"fa-robot"},{"id":7,"name":"115-nantou-jh-campus-safety","title":"南投縣立南投國中 學務處校園安全專頁 ｜ 115學年度安全防衛旗艦網","desc":"南投縣立南投國民中學校園安全專頁（學務處）：115學年度霸凌防制、性平防治、24H校安通報、交通導護、防災演練、菸害防制、警校聯防、巡查熱點與全套標準表單法規匯整。","pagesUrl":"https://yaoshuchin.github.io/115-nantou-jh-campus-safety/","repoUrl":"https://github.com/yaoshuchin/115-nantou-jh-campus-safety","date":"2026-11-03","category":"投中校務與班級成果","categoryKey":"campus","badgeColor":"blue","icon":"fa-school"},{"id":8,"name":"115-nantou-jh-eco-education","title":"南投縣立南投國中 115學年度環境教育考評成果旗艦網","desc":"南投縣立南投國民中學 115學年度環境教育考評複評到校訪視輔導 · 成果展示旗艦網","pagesUrl":"https://yaoshuchin.github.io/115-nantou-jh-eco-education/","repoUrl":"https://github.com/yaoshuchin/115-nantou-jh-eco-education","date":"2026-11-02","category":"投中校務與班級成果","categoryKey":"campus","badgeColor":"blue","icon":"fa-school"},{"id":9,"name":"living-technology-micro-chair","title":"國中生活科技：設計與製作 ── 三視圖 · 手繪圖 · 數位製圖 · 微型椅子 | 南投國中","desc":"國中生活科技 - 設計與製作：三視圖 · 手繪圖 · 數位製圖 · 微型椅子 核心素養教學專題旗艦網","pagesUrl":"https://yaoshuchin.github.io/living-technology-micro-chair/","repoUrl":"https://github.com/yaoshuchin/living-technology-micro-chair","date":"2026-11-02","category":"投中校務與班級成果","categoryKey":"campus","badgeColor":"blue","icon":"fa-school"},{"id":10,"name":"115-keelung-ai-agent-workshop","title":"基隆市 115 學年度公立高中職中小學行政增能線上研習（6 小時）- 成果報告網","desc":"南投國中及教育創新成果專案：115-keelung-ai-agent-workshop。提供線上即時瀏覽與教育資源整合。","pagesUrl":"https://yaoshuchin.github.io/115-keelung-ai-agent-workshop/","repoUrl":"https://github.com/yaoshuchin/115-keelung-ai-agent-workshop","date":"2026-10-31","category":"研習數位典藏與看板","categoryKey":"archives","badgeColor":"purple","icon":"fa-box-archive"},{"id":11,"name":"115-nantou-camping-guide","title":"南投國中 115 學年度二年級戶外教育（隔宿露營）教學簡報","desc":"南投縣立南投國民中學 115 學年度二年級戶外教育活動（隔宿露營）手冊與教學簡報","pagesUrl":"https://yaoshuchin.github.io/115-nantou-camping-guide/","repoUrl":"https://github.com/yaoshuchin/115-nantou-camping-guide","date":"2026-10-29","category":"投中校務與班級成果","categoryKey":"campus","badgeColor":"blue","icon":"fa-school"},{"id":12,"name":"nantou-junior-high-director-dong","title":"從受顧者到守護者｜南投國中董勳遠主任 115學年度隔宿露營成長專題網","desc":"南投縣立南投國民中學115學年度二年級隔宿露營活動總結——學務主任董勳遠主任10分鐘結訓談話、四大核心教育哲思、四套完整簡報展覽館與露營成長手帳。","pagesUrl":"https://yaoshuchin.github.io/nantou-junior-high-director-dong/","repoUrl":"https://github.com/yaoshuchin/nantou-junior-high-director-dong","date":"2026-10-29","category":"投中校務與班級成果","categoryKey":"campus","badgeColor":"blue","icon":"fa-school"},{"id":13,"name":"115-nantou-camping-classes","title":"南投國中 115學年度國二隔宿露營 · 尖山埤探索相簿","desc":"南投縣立南投國民中學 115學年度國二隔宿露營 · 9大班級隊輔與探索相簿網頁版","pagesUrl":"https://yaoshuchin.github.io/115-nantou-camping-classes/","repoUrl":"https://github.com/yaoshuchin/115-nantou-camping-classes","date":"2026-10-28","category":"投中校務與班級成果","categoryKey":"campus","badgeColor":"blue","icon":"fa-school"},{"id":14,"name":"115-nantou-camping-photo","title":"南投國中 尖山埤露營探索活動精彩紀實","desc":"南投縣立南投國民中學 115學年度二年級隔宿露營14大主題精彩相簿","pagesUrl":"https://yaoshuchin.github.io/115-nantou-camping-photo/","repoUrl":"https://github.com/yaoshuchin/115-nantou-camping-photo","date":"2026-10-28","category":"投中校務與班級成果","categoryKey":"campus","badgeColor":"blue","icon":"fa-school"},{"id":15,"name":"115-nantou-trip-portal","title":"南投縣立南投國民中學 115學年度 畢業旅行行動多媒體導覽入口網","desc":"南投縣立南投國民中學 115學年度 畢業旅行行動多媒體導覽入口網（去個資合規版 · 14大單元投影片與影音全集）","pagesUrl":"https://yaoshuchin.github.io/115-nantou-trip-portal/","repoUrl":"https://github.com/yaoshuchin/115-nantou-trip-portal","date":"2026-10-26","category":"投中校務與班級成果","categoryKey":"campus","badgeColor":"blue","icon":"fa-school"},{"id":16,"name":"padlet-ijun-ai","title":"奕鈞老師 數位教學與 AI 研習看板整合平台 · 課文3D世界 · Kahoot · Wordwall","desc":"南投國中及教育創新成果專案：padlet-ijun-ai。提供線上即時瀏覽與教育資源整合。","pagesUrl":"https://yaoshuchin.github.io/padlet-ijun-ai/","repoUrl":"https://github.com/yaoshuchin/padlet-ijun-ai","date":"2026-10-26","category":"研習數位典藏與看板","categoryKey":"archives","badgeColor":"purple","icon":"fa-box-archive"},{"id":17,"name":"padlet-gemini-magic","title":"Google AI 雙刀流與全方位教學實戰 · 9大主題看板整合平台 (2,616 張卡片全量離線)","desc":"Gemini就是神奇 · 協作看板與完整提示詞庫 (100% 離線鏡像與多媒體素材庫)","pagesUrl":"https://yaoshuchin.github.io/padlet-gemini-magic/","repoUrl":"https://github.com/yaoshuchin/padlet-gemini-magic","date":"2026-10-25","category":"研習數位典藏與看板","categoryKey":"archives","badgeColor":"purple","icon":"fa-box-archive"},{"id":18,"name":"padlet-ai-1024","title":"從AI問答走向教學工作流1024 - Padlet 協作看板","desc":"從AI問答走向教學工作流1024 - 協作看板網頁版 (含全量本機圖片與附件)","pagesUrl":"https://yaoshuchin.github.io/padlet-ai-1024/","repoUrl":"https://github.com/yaoshuchin/padlet-ai-1024","date":"2026-10-24","category":"研習數位典藏與看板","categoryKey":"archives","badgeColor":"purple","icon":"fa-box-archive"},{"id":19,"name":"padlet-ai-expert-system","title":"AI專家系統建置練習 - 紅焰 × Edcafe AI / Poe 教學機器人成果全集","desc":"AI 專家系統建置練習 - 協作看板與 141 位教師自製機器人成果全集 (含全量本機素材與離線支援)","pagesUrl":"https://yaoshuchin.github.io/padlet-ai-expert-system/","repoUrl":"https://github.com/yaoshuchin/padlet-ai-expert-system","date":"2026-10-24","category":"研習數位典藏與看板","categoryKey":"archives","badgeColor":"purple","icon":"fa-box-archive"},{"id":20,"name":"padlet-notebooklm","title":"NotebookLM逆天神應用 - 協作看板與完整提示詞庫","desc":"NotebookLM 逆天神應用 - 協作看板與完整提示詞庫網頁版 (含全量本機多媒體與下載附件)","pagesUrl":"https://yaoshuchin.github.io/padlet-notebooklm/","repoUrl":"https://github.com/yaoshuchin/padlet-notebooklm","date":"2026-10-24","category":"研習數位典藏與看板","categoryKey":"archives","badgeColor":"purple","icon":"fa-box-archive"},{"id":21,"name":"prepareautoflow","title":"紅焰 - AI 備課自動化工作流與 1024 研習資料全集","desc":"紅焰 - AI 備課自動化工作流教學簡報 (Google 協作平台完整鏡像與獨立應用)","pagesUrl":"https://yaoshuchin.github.io/prepareautoflow/","repoUrl":"https://github.com/yaoshuchin/prepareautoflow","date":"2026-10-24","category":"研習數位典藏與看板","categoryKey":"archives","badgeColor":"purple","icon":"fa-box-archive"},{"id":22,"name":"bananax-infographic-300","title":"BananaX 提示詞庫 300 選 | AI 資訊圖表生成 (2026年)","desc":"南投國中及教育創新成果專案：bananax-infographic-300。提供線上即時瀏覽與教育資源整合。","pagesUrl":"https://yaoshuchin.github.io/bananax-infographic-300/","repoUrl":"https://github.com/yaoshuchin/bananax-infographic-300","date":"2026-10-23","category":"AI教學與行政賦能","categoryKey":"ai","badgeColor":"indigo","icon":"fa-robot"},{"id":23,"name":"gemini-notebook-2026","title":"GeminiNoteBook 從資料建立規格到生成工具 · NotebookLM × AI 規格化 × Vibe Coding","desc":"阿亮老師 15W383 課程教材：Gemini Notebook（原 NotebookLM）建知識庫、AI 規格化與交叉審查、Claude Code 做出報帳檢查小幫手。","pagesUrl":"https://yaoshuchin.github.io/gemini-notebook-2026/","repoUrl":"https://github.com/yaoshuchin/gemini-notebook-2026","date":"2026-10-23","category":"AI教學與行政賦能","categoryKey":"ai","badgeColor":"indigo","icon":"fa-robot"},{"id":24,"name":"ntjh-camp-handbook-2026","title":"南投國中 115學年度二年級隔宿露營專屬行動手冊","desc":"南投縣立南投國民中學 115學年度 二年級戶外教育隔宿露營（台南尖山埤）專屬 RWD 行動數位手冊。提供帳篷住宿速查、野炊小隊分工、兩日行程時間軸、遊覽車編組、行前行李清單與童軍技能寶典。","pagesUrl":"https://yaoshuchin.github.io/ntjh-camp-handbook-2026/","repoUrl":"https://github.com/yaoshuchin/ntjh-camp-handbook-2026","date":"2026-10-20","category":"投中校務與班級成果","categoryKey":"campus","badgeColor":"blue","icon":"fa-school"},{"id":25,"name":"ntjh-trip-handbook-2026","title":"南投國中 115學年度畢業旅行 行動簡報手冊（去個資版）","desc":"南投縣立南投國民中學 115學年度畢業旅行 簡報式行動手冊，提供投影片全螢幕簡報模式與捲動閱讀模式，支援快速查詢行程、去個資房號車次、景點與生活須知。","pagesUrl":"https://yaoshuchin.github.io/ntjh-trip-handbook-2026/","repoUrl":"https://github.com/yaoshuchin/ntjh-trip-handbook-2026","date":"2026-10-20","category":"投中校務與班級成果","categoryKey":"campus","badgeColor":"blue","icon":"fa-school"},{"id":26,"name":"ai-image-gpt-1015","title":"AI 圖像與 GPT 基礎 · AI 影音創作系列研習 · DSLab","desc":"AI 圖像與 GPT 基礎：圖像 skill、教學簡報、資訊圖表與可複製的提示詞包。","pagesUrl":"https://yaoshuchin.github.io/ai-image-gpt-1015/","repoUrl":"https://github.com/yaoshuchin/ai-image-gpt-1015","date":"2026-10-17","category":"研習數位典藏與看板","categoryKey":"archives","badgeColor":"purple","icon":"fa-box-archive"},{"id":27,"name":"chinese4-06","title":"攀登生命的高峰 - 四年級寫作引導與互動學習網頁","desc":"南投國中及教育創新成果專案：chinese4-06。提供線上即時瀏覽與教育資源整合。","pagesUrl":"https://yaoshuchin.github.io/chinese4-06/","repoUrl":"https://github.com/yaoshuchin/chinese4-06","date":"2026-10-15","category":"互動教材與數位工具","categoryKey":"tools","badgeColor":"amber","icon":"fa-gamepad"},{"id":28,"name":"halloween2026","title":"奇幻怪獸拼貼樂園 - 創意手作與著色","desc":"南投國中及教育創新成果專案：halloween2026。提供線上即時瀏覽與教育資源整合。","pagesUrl":"https://yaoshuchin.github.io/halloween2026/","repoUrl":"https://github.com/yaoshuchin/halloween2026","date":"2026-10-15","category":"互動教材與數位工具","categoryKey":"tools","badgeColor":"amber","icon":"fa-gamepad"},{"id":29,"name":"Interactive-Web-new","title":"國小教學互動網頁提示詞產生器 | 設計：陳佳釧老師","desc":"南投國中及教育創新成果專案：Interactive-Web-new。提供線上即時瀏覽與教育資源整合。","pagesUrl":"https://yaoshuchin.github.io/Interactive-Web-new/","repoUrl":"https://github.com/yaoshuchin/Interactive-Web-new","date":"2026-10-15","category":"AI教學與行政賦能","categoryKey":"ai","badgeColor":"indigo","icon":"fa-robot"},{"id":30,"name":"math4-00","title":"四年級數學 (4上) 互動學習入口 | 南一・康軒・翰林通用版","desc":"南投國中及教育創新成果專案：math4-00。提供線上即時瀏覽與教育資源整合。","pagesUrl":"https://yaoshuchin.github.io/math4-00/","repoUrl":"https://github.com/yaoshuchin/math4-00","date":"2026-10-15","category":"互動教材與數位工具","categoryKey":"tools","badgeColor":"amber","icon":"fa-gamepad"},{"id":31,"name":"math4-01","title":"國小四年級數學：一億以內的數 魔法探索樂園","desc":"南投國中及教育創新成果專案：math4-01。提供線上即時瀏覽與教育資源整合。","pagesUrl":"https://yaoshuchin.github.io/math4-01/","repoUrl":"https://github.com/yaoshuchin/math4-01","date":"2026-10-15","category":"互動教材與數位工具","categoryKey":"tools","badgeColor":"amber","icon":"fa-gamepad"},{"id":32,"name":"math4-02","title":"🐾 魔法乘法小怪獸：四年級直式對位冒險島 🌟 (陳佳釧老師設計)","desc":"南投國中及教育創新成果專案：math4-02。提供線上即時瀏覽與教育資源整合。","pagesUrl":"https://yaoshuchin.github.io/math4-02/","repoUrl":"https://github.com/yaoshuchin/math4-02","date":"2026-10-15","category":"互動教材與數位工具","categoryKey":"tools","badgeColor":"amber","icon":"fa-gamepad"},{"id":33,"name":"math4-03","title":"魔法角度冒險王國 - 國小四年級互動數學樂園","desc":"南投國中及教育創新成果專案：math4-03。提供線上即時瀏覽與教育資源整合。","pagesUrl":"https://yaoshuchin.github.io/math4-03/","repoUrl":"https://github.com/yaoshuchin/math4-03","date":"2026-10-15","category":"互動教材與數位工具","categoryKey":"tools","badgeColor":"amber","icon":"fa-gamepad"},{"id":34,"name":"math4-04","title":"除法探索樂園 - 國小四年級數學互動教室","desc":"南投國中及教育創新成果專案：math4-04。提供線上即時瀏覽與教育資源整合。","pagesUrl":"https://yaoshuchin.github.io/math4-04/","repoUrl":"https://github.com/yaoshuchin/math4-04","date":"2026-10-15","category":"互動教材與數位工具","categoryKey":"tools","badgeColor":"amber","icon":"fa-gamepad"},{"id":35,"name":"math4-05","title":"幾何小探險家：三角形的奇幻世界（四年級數學）","desc":"南投國中及教育創新成果專案：math4-05。提供線上即時瀏覽與教育資源整合。","pagesUrl":"https://yaoshuchin.github.io/math4-05/","repoUrl":"https://github.com/yaoshuchin/math4-05","date":"2026-10-15","category":"互動教材與數位工具","categoryKey":"tools","badgeColor":"amber","icon":"fa-gamepad"},{"id":36,"name":"math4-06","title":"分數奇幻王國 - 四年級數學互動學習網","desc":"南投國中及教育創新成果專案：math4-06。提供線上即時瀏覽與教育資源整合。","pagesUrl":"https://yaoshuchin.github.io/math4-06/","repoUrl":"https://github.com/yaoshuchin/math4-06","date":"2026-10-15","category":"互動教材與數位工具","categoryKey":"tools","badgeColor":"amber","icon":"fa-gamepad"},{"id":37,"name":"math4-09","title":"小數奇幻冒險島 - 國小四年級數學","desc":"南投國中及教育創新成果專案：math4-09。提供線上即時瀏覽與教育資源整合。","pagesUrl":"https://yaoshuchin.github.io/math4-09/","repoUrl":"https://github.com/yaoshuchin/math4-09","date":"2026-10-15","category":"互動教材與數位工具","categoryKey":"tools","badgeColor":"amber","icon":"fa-gamepad"},{"id":38,"name":"lesson-prep-website","title":"與 AI 共備：一站式的國語備課｜高效版","desc":"佳釧老師設計的國語備課工具：從 AI 備課痛點出發，自行貼上課文、聚焦學習重點並產生完整共備提示詞。","pagesUrl":"https://yaoshuchin.github.io/lesson-prep-website/","repoUrl":"https://github.com/yaoshuchin/lesson-prep-website","date":"2026-10-13","category":"AI教學與行政賦能","categoryKey":"ai","badgeColor":"indigo","icon":"fa-robot"},{"id":39,"name":"qrcode-toolbox","title":"Studio0808 QR Code萬用工具箱 - 產生、美化、短網址、圖片轉QR與即時掃描","desc":"Studio0808 QR Code萬用工具箱：支援多格式 QR Code 產生、即時短網址縮短、圖片上傳轉 QR、高解析度美化匯出、相機與圖片解碼、批次產生與歷史紀錄。","pagesUrl":"https://yaoshuchin.github.io/qrcode-toolbox/","repoUrl":"https://github.com/yaoshuchin/qrcode-toolbox","date":"2026-10-13","category":"互動教材與數位工具","categoryKey":"tools","badgeColor":"amber","icon":"fa-gamepad"},{"id":40,"name":"meanwhile-live","title":"Meanwhile · 此刻的世界","desc":"不是選地點，而是選心情。挑一種天氣或時刻，地球儀上就只留下此刻符合的即時直播 —— 選一個喜歡的城市陪伴你。","pagesUrl":"https://yaoshuchin.github.io/meanwhile-live/","repoUrl":"https://github.com/yaoshuchin/meanwhile-live","date":"2026-10-12","category":"互動教材與數位工具","categoryKey":"tools","badgeColor":"amber","icon":"fa-gamepad"},{"id":41,"name":"wild-moments-100-animals","title":"此刻野境・全球動物觀察站｜100種動物世界生態 Live","desc":"一個可旋轉地球、探索全球 100 種動物觀察攝影機的繁體中文互動網站。","pagesUrl":"https://yaoshuchin.github.io/wild-moments-100-animals/","repoUrl":"https://github.com/yaoshuchin/wild-moments-100-animals","date":"2026-10-12","category":"互動教材與數位工具","categoryKey":"tools","badgeColor":"amber","icon":"fa-gamepad"},{"id":42,"name":"nantou-jh-parent-teacher-handbook","title":"115南投國中親師手冊","desc":"南投國中及教育創新成果專案：nantou-jh-parent-teacher-handbook。提供線上即時瀏覽與教育資源整合。","pagesUrl":"https://yaoshuchin.github.io/nantou-jh-parent-teacher-handbook/","repoUrl":"https://github.com/yaoshuchin/nantou-jh-parent-teacher-handbook","date":"2026-09-20","category":"投中校務與班級成果","categoryKey":"campus","badgeColor":"blue","icon":"fa-school"},{"id":43,"name":"classtool","title":"剛好學：課堂互動so easy","desc":"剛好學V1.1 - Deployed by EZPage","pagesUrl":"https://yaoshuchin.github.io/classtool/","repoUrl":"https://github.com/yaoshuchin/classtool","date":"2025-10-17","category":"互動教材與數位工具","categoryKey":"tools","badgeColor":"amber","icon":"fa-gamepad"},{"id":44,"name":"1151127-116-cap-admission-schedule","title":"南投國中 · 116學年度國中教育會考及全國高級中等學校與專科學校五年制適性入學重要日程表","desc":"南投縣立南投國民中學 · 教育部115年9月11日臺教授國部字第1155404304號函 · 116學年度國中教育會考、各管道適性入學重要時程互動式視覺化查詢系統","pagesUrl":"https://yaoshuchin.github.io/1151127-116-cap-admission-schedule/","repoUrl":"https://github.com/yaoshuchin/1151127-116-cap-admission-schedule","date":"115.11.27","category":"投中校務與班級成果","categoryKey":"campus","badgeColor":"blue","icon":"fa-school"},{"id":45,"name":"1151127-chengweiyu-ai-learning","title":"未來教師 AI 力 · AI未來學習力","desc":"1151127 程瑋昱 · AI未來學習力（未來教師 AI 力工具箱、30個教學技能、Gemini工具箱、學校行政AI任務與Gemini分享資源 · 門禁密碼: nato）","pagesUrl":"https://yaoshuchin.github.io/1151127-chengweiyu-ai-learning/","repoUrl":"https://github.com/yaoshuchin/1151127-chengweiyu-ai-learning","date":"115.11.27","category":"互動教材與數位工具","categoryKey":"tools","badgeColor":"amber","icon":"fa-gamepad"},{"id":46,"name":"1151127-jianyifang-lesson-plan","title":"簡怡芳實習教師 教學計畫成果網頁 | Dream Jobs, Two Sides! ｜ 南投國中英語資源班","desc":"1151127 簡怡芳實習教師 · 國中英語資源班教學計畫成果網頁 (Dream Jobs, Two Sides! · Pros and Cons 閱讀策略 · 門禁密碼: 049)","pagesUrl":"https://yaoshuchin.github.io/1151127-jianyifang-lesson-plan/","repoUrl":"https://github.com/yaoshuchin/1151127-jianyifang-lesson-plan","date":"115.11.27","category":"投中校務與班級成果","categoryKey":"campus","badgeColor":"blue","icon":"fa-school"},{"id":47,"name":"1151126-nantou-pe-eval","title":"南投縣立南投國民中學 115學年度體育班評鑑成果資訊網","desc":"1151126 南投國中體育班評鑑成果網與Word彙整報告 (密碼: 049)","pagesUrl":"https://yaoshuchin.github.io/1151126-nantou-pe-eval/","repoUrl":"https://github.com/yaoshuchin/1151126-nantou-pe-eval","date":"115.11.26","category":"投中校務與班級成果","categoryKey":"campus","badgeColor":"blue","icon":"fa-school"},{"id":48,"name":"1151125-aliang-video-generator","title":"🎬 影片製作包生成器 · 視覺化旗艦版","desc":"1151125 阿亮老師 · 影片製作包生成器視覺化旗艦版 · 門禁密碼: nato","pagesUrl":"https://yaoshuchin.github.io/1151125-aliang-video-generator/","repoUrl":"https://github.com/yaoshuchin/1151125-aliang-video-generator","date":"115.11.25","category":"AI教學與行政賦能","categoryKey":"ai","badgeColor":"indigo","icon":"fa-robot"},{"id":49,"name":"1151125-nantou-exam-roster","title":"南投國中 115學年度第1學期 各科評量教師輪值與教學進度查詢系統","desc":"115學年度第1學期 南投縣立南投國中 各科評量教師輪值表與教學預定進度互動查詢系統（命題一覽表、審校一覽表、21週全學科進度、48位教師個人輪值檢索卡、排程衝突檢核分析、官方Excel下載）","pagesUrl":"https://yaoshuchin.github.io/1151125-nantou-exam-roster/","repoUrl":"https://github.com/yaoshuchin/1151125-nantou-exam-roster","date":"115.11.25","category":"投中校務與班級成果","categoryKey":"campus","badgeColor":"blue","icon":"fa-school"},{"id":50,"name":"1151124-codex-ai-agent-guide","title":"Codex打造超級小幫手 · AI Agent時代來臨 | 橘子老師實戰研習","desc":"1151124 橘子老師 · AI Agent 時代來臨：Codex 打造超級小幫手（50頁簡報高畫質呈現、16:9等比投影、白板畫筆塗鴉、Prompt/Context/Loop三階段工程、五層Skill架構、試算表寄信、報廢單公文生成、雲端自動排程出題 · 門禁密碼: nato）","pagesUrl":"https://yaoshuchin.github.io/1151124-codex-ai-agent-guide/","repoUrl":"https://github.com/yaoshuchin/1151124-codex-ai-agent-guide","date":"115.11.24","category":"研習數位典藏與看板","categoryKey":"archives","badgeColor":"purple","icon":"fa-box-archive"},{"id":51,"name":"1151124-competition-guide","title":"科技教育創意實作競賽【資訊科技組】 程式實作解題與競賽全攻略","desc":"1151124 科技教育創意實作競賽【資訊科技組】 程式實作解題與競賽全攻略（Scratch × Blockly 雙軌積木教學、演算法思維拆解、11大題庫解析、線上即時評測與一鍵全自動批次測試 · 門禁密碼: nato）","pagesUrl":"https://yaoshuchin.github.io/1151124-competition-guide/","repoUrl":"https://github.com/yaoshuchin/1151124-competition-guide","date":"115.11.24","category":"AI教學與行政賦能","categoryKey":"ai","badgeColor":"indigo","icon":"fa-robot"},{"id":52,"name":"1151124-facv-outdoor-edu","title":"南投縣九族文化村戶外教育教學展示系統 - 臺灣原住民族文化深度探索與全景研學平台","desc":"南投縣九族文化村戶外教育教學展示系統，涵蓋363件現場實拍影像、16族文化部落導覽、高空纜車林道生態、九族文化博物館珍品典藏、西班牙海岸建築美學與素養導向問答挑戰。","pagesUrl":"https://yaoshuchin.github.io/1151124-facv-outdoor-edu/","repoUrl":"https://github.com/yaoshuchin/1151124-facv-outdoor-edu","date":"115.11.24","category":"創新教案與公開觀課","categoryKey":"curriculum","badgeColor":"emerald","icon":"fa-chalkboard-user"},{"id":53,"name":"1151124-gemini-spark","title":"Gemini Spark：打造智慧教學與自動化備課的 AI 新紀元 | 慈大附中研習手冊","desc":"20261124 慈大附中 Gemini Spark：打造智慧教學與自動化備課的 AI 新紀元 (李燕秋老師 主講 · 跨校課綱橫向比對 · 教學計畫AI健檢 · 講義轉簡報 · Gmail工作流排程 · 評量數據分析)","pagesUrl":"https://yaoshuchin.github.io/1151124-gemini-spark/","repoUrl":"https://github.com/yaoshuchin/1151124-gemini-spark","date":"115.11.24","category":"研習數位典藏與看板","categoryKey":"archives","badgeColor":"purple","icon":"fa-box-archive"},{"id":54,"name":"1151124-orange-ai-in-education","title":"Ai在教學上的應用 - 橘子老師實戰講座 數位學習平台","desc":"1151124 橘子老師 · AI在教學上的應用（52頁完整簡報高畫質呈現、分頁分類標籤切換、中/大/特大字型切換、淺/深/綠/藍四色布景主題切換、語音轉逐字稿行政會議記錄、HTML5射擊遊戲對戰版、雲端皮克斯繪本生成器、會考出題大師 · 門禁密碼: nato）","pagesUrl":"https://yaoshuchin.github.io/1151124-orange-ai-in-education/","repoUrl":"https://github.com/yaoshuchin/1151124-orange-ai-in-education","date":"115.11.24","category":"互動教材與數位工具","categoryKey":"tools","badgeColor":"amber","icon":"fa-gamepad"},{"id":55,"name":"1151124-wangyi-ai-task-designer","title":"AI賦能教學創新雙核心平台 | 製作動態視覺化APP × AI任務設計師","desc":"1151124 汪檍老師 · AI 任務設計師：GEMINI/GPT 畫布裡的自主學習與跨域專案（91頁簡報精華、26處真實專案線上展廳、16大深度主題剖析、提示詞工程、Word實務手冊下載）","pagesUrl":"https://yaoshuchin.github.io/1151124-wangyi-ai-task-designer/","repoUrl":"https://github.com/yaoshuchin/1151124-wangyi-ai-task-designer","date":"115.11.24","category":"AI教學與行政賦能","categoryKey":"ai","badgeColor":"indigo","icon":"fa-robot"},{"id":56,"name":"1151124-xmas-prompt-studio","title":"隨心 AI Studio 🎄 2026 聖誕魔法宇宙 V4.0 Ultimate Commercial Cinema Edition","desc":"隨心 AI Studio 2026 聖誕魔法宇宙 V4.0 電影級 AI 提示詞工程旗艦系統","pagesUrl":"https://yaoshuchin.github.io/1151124-xmas-prompt-studio/","repoUrl":"https://github.com/yaoshuchin/1151124-xmas-prompt-studio","date":"115.11.24","category":"AI教學與行政賦能","categoryKey":"ai","badgeColor":"indigo","icon":"fa-robot"},{"id":57,"name":"1151123-ai-curriculum-framework","title":"AI導入課程與評量——AI素養融入教學與學生學習的實務架構 | 施君潔主任","desc":"1151123 AI導入課程與評量——AI素養融入教學與學生學習的實務架構（施君潔主任主講、鷹架vs拐杖、課堂六部曲、七項檢核指標、Bloom-AI防外包金字塔、Word講義手冊下載）","pagesUrl":"https://yaoshuchin.github.io/1151123-ai-curriculum-framework/","repoUrl":"https://github.com/yaoshuchin/1151123-ai-curriculum-framework","date":"115.11.23","category":"AI教學與行政賦能","categoryKey":"ai","badgeColor":"indigo","icon":"fa-robot"},{"id":58,"name":"1151123-math-ai-app-gas","title":"115 國中數學領域 數位科技推動自主學習探究 (AI × APP × GAS)","desc":"1151123 國中數學領域 數位科技推動自主學習探究（AI × APP × GAS、李慧玲老師主講、Gemini Canvas 互動評量、Google Sheets + GAS 自動化串接、Word 手冊下載 · 門禁密碼: 049）","pagesUrl":"https://yaoshuchin.github.io/1151123-math-ai-app-gas/","repoUrl":"https://github.com/yaoshuchin/1151123-math-ai-app-gas","date":"115.11.23","category":"AI教學與行政賦能","categoryKey":"ai","badgeColor":"indigo","icon":"fa-robot"},{"id":59,"name":"1151123-nantou-student-regulations","title":"南投縣立南投國民中學 學生獎懲規定暨獎懲要點 互動查詢系統","desc":"1151123 南投縣立南投國中 學生獎懲要點暨改過銷過辦法 互動查詢與試算系統（嘉獎/小功/大功/警告/小過/大過、情境標籤篩選、考核期試算器、Word與全文閱覽 · 門禁密碼: 049）","pagesUrl":"https://yaoshuchin.github.io/1151123-nantou-student-regulations/","repoUrl":"https://github.com/yaoshuchin/1151123-nantou-student-regulations","date":"115.11.23","category":"投中校務與班級成果","categoryKey":"campus","badgeColor":"blue","icon":"fa-school"},{"id":60,"name":"1151123-nantou-teachers-seating","title":"南投縣立南投國民中學 115學年度教師座位與分機互動查詢系統","desc":"南投國中及教育創新成果專案：1151123-nantou-teachers-seating。提供線上即時瀏覽與教育資源整合。","pagesUrl":"https://yaoshuchin.github.io/1151123-nantou-teachers-seating/","repoUrl":"https://github.com/yaoshuchin/1151123-nantou-teachers-seating","date":"115.11.23","category":"投中校務與班級成果","categoryKey":"campus","badgeColor":"blue","icon":"fa-school"},{"id":61,"name":"1151123-touzhong-304-flowchart","title":"南投國中 304 班｜AI旅程照片生成器 & 流程圖規格庫","desc":"南投國中及教育創新成果專案：1151123-touzhong-304-flowchart。提供線上即時瀏覽與教育資源整合。","pagesUrl":"https://yaoshuchin.github.io/1151123-touzhong-304-flowchart/","repoUrl":"https://github.com/yaoshuchin/1151123-touzhong-304-flowchart","date":"115.11.23","category":"投中校務與班級成果","categoryKey":"campus","badgeColor":"blue","icon":"fa-school"},{"id":62,"name":"1151122-google-flow-ai-video","title":"呂聰賢老師 · Google Flow AI 影片生成 × 視訊逆向工程實作課","desc":"1151122 呂聰賢老師 · Google Flow AI 影片生成與逆向工程實作課（AI影片三劍客、首尾幀S&E防坍塌、10大主題作品集、提示詞工作室、剪映後製八步法 · 門禁密碼: nato）","pagesUrl":"https://yaoshuchin.github.io/1151122-google-flow-ai-video/","repoUrl":"https://github.com/yaoshuchin/1151122-google-flow-ai-video","date":"115.11.22","category":"AI教學與行政賦能","categoryKey":"ai","badgeColor":"indigo","icon":"fa-robot"},{"id":63,"name":"1151120-halo-reaction-light","title":"光環反應機模擬器 - 斗六國中王富昌老師原創教具","desc":"1151120 4合1光環反應機模擬器（光環狙擊手、10秒挑戰、集氣大砲、反應速度王 · 原創教具發想：雲林縣立斗六國中 王富昌老師 · 支援WS2812光效與即時合成音效）","pagesUrl":"https://yaoshuchin.github.io/1151120-halo-reaction-light/","repoUrl":"https://github.com/yaoshuchin/1151120-halo-reaction-light","date":"115.11.20","category":"互動教材與數位工具","categoryKey":"tools","badgeColor":"amber","icon":"fa-gamepad"},{"id":64,"name":"1151120-nantou-camping-roster","title":"南投國中 115學年度二年級隔宿露營名冊與編組查詢系統（資安保護版）","desc":"1151120 南投國中 115學年度二年級隔宿露營名冊與活動編組系統（野炊小隊、帳篷分配、師長寢室、資安去識別化遮罩、統計查詢看板）","pagesUrl":"https://yaoshuchin.github.io/1151120-nantou-camping-roster/","repoUrl":"https://github.com/yaoshuchin/1151120-nantou-camping-roster","date":"115.11.20","category":"投中校務與班級成果","categoryKey":"campus","badgeColor":"blue","icon":"fa-school"},{"id":65,"name":"1151118-canva-ai-teaching","title":"Ai在教學上的應用20261118 · 橘子老師 | 完整高解析簡報鏡像與實戰工作台","desc":"1151118 橘子老師 · Ai在教學上的應用 Canva 簡報無損鏡像與實戰工作台（Gemini會議記錄、射擊遊戲對戰版、雲端繪本生成器、會考出題大師 · 門禁密碼: nato）","pagesUrl":"https://yaoshuchin.github.io/1151118-canva-ai-teaching/","repoUrl":"https://github.com/yaoshuchin/1151118-canva-ai-teaching","date":"115.11.18","category":"互動教材與數位工具","categoryKey":"tools","badgeColor":"amber","icon":"fa-gamepad"},{"id":66,"name":"1151118-nantou-club-rollcall","title":"南投國中 115學年度 社團點名系統","desc":"1151118 南投國中 115學年度 各社團點名管理系統（每週二第7-8節 · 門禁密碼: nato · 支援Excel/CSV匯出與A4紙本列印）","pagesUrl":"https://yaoshuchin.github.io/1151118-nantou-club-rollcall/","repoUrl":"https://github.com/yaoshuchin/1151118-nantou-club-rollcall","date":"115.11.18","category":"投中校務與班級成果","categoryKey":"campus","badgeColor":"blue","icon":"fa-school"},{"id":67,"name":"1151118-vehicle-isles","title":"無人載具競技群島","desc":"1151118 阿亮老師 · 無人載具 3D 建模實作 × 競技群島教學平台（無人機、格鬥機器人、水上無人船 · 機構拆解車庫 · 博物館 · AI工坊 · 門禁驗證）","pagesUrl":"https://yaoshuchin.github.io/1151118-vehicle-isles/","repoUrl":"https://github.com/yaoshuchin/1151118-vehicle-isles","date":"115.11.18","category":"互動教材與數位工具","categoryKey":"tools","badgeColor":"amber","icon":"fa-gamepad"},{"id":68,"name":"1151117-3d-campus-tour","title":"世新大學・漫遊校園 3D","desc":"1151117 世新大學・漫遊校園 3D 概念互動導覽（門禁密碼: nato）","pagesUrl":"https://yaoshuchin.github.io/1151117-3d-campus-tour/","repoUrl":"https://github.com/yaoshuchin/1151117-3d-campus-tour","date":"115.11.17","category":"互動教材與數位工具","categoryKey":"tools","badgeColor":"amber","icon":"fa-gamepad"},{"id":69,"name":"1151117-studio0808","title":"Studio0808 智造實驗室 | Tech Lab","desc":"1151117 begin0808 Studio 智造實驗室科技小工具與多功能工作台鏡像站（門禁密碼: nato）","pagesUrl":"https://yaoshuchin.github.io/1151117-studio0808/","repoUrl":"https://github.com/yaoshuchin/1151117-studio0808","date":"115.11.17","category":"AI教學與行政賦能","categoryKey":"ai","badgeColor":"indigo","icon":"fa-robot"},{"id":70,"name":"1151117-wang-math-ai","title":"放數學一馬－AI 攜手成為千里馬的伯樂 · 王玉珍老師 學習扶助AI協作看板","desc":"1151117 王玉珍老師 · 放數學一馬－AI 攜手成為千里馬的伯樂（教育部學習扶助科技化評量與 AI 協作分析看板 · 門禁密碼: nato）","pagesUrl":"https://yaoshuchin.github.io/1151117-wang-math-ai/","repoUrl":"https://github.com/yaoshuchin/1151117-wang-math-ai","date":"115.11.17","category":"創新教案與公開觀課","categoryKey":"curriculum","badgeColor":"emerald","icon":"fa-chalkboard-user"},{"id":71,"name":"1151116-nantou-preserved-flower","title":"讓花停在最美的時刻｜永生花教學展","desc":"南投國中數學領域教師研習：永生花美感手作教學與成果展示。","pagesUrl":"https://yaoshuchin.github.io/1151116-nantou-preserved-flower/","repoUrl":"https://github.com/yaoshuchin/1151116-nantou-preserved-flower","date":"115.11.16","category":"投中校務與班級成果","categoryKey":"campus","badgeColor":"blue","icon":"fa-school"},{"id":72,"name":"1151116-nmns-one-health","title":"看見生命的連線｜臺中自然科學博物館訪視成果","desc":"1151116 國立自然科學博物館 ·《看見你我他牠它：健康一體的行動密碼》跨物種共生特展成果教學展示系統（105件實體展品 · 六大探索面向 · 12題公衛素養問答 · 簡報投影與螢幕畫筆）","pagesUrl":"https://yaoshuchin.github.io/1151116-nmns-one-health/","repoUrl":"https://github.com/yaoshuchin/1151116-nmns-one-health","date":"115.11.16","category":"創新教案與公開觀課","categoryKey":"curriculum","badgeColor":"emerald","icon":"fa-chalkboard-user"},{"id":73,"name":"1151115-ai-historical-drama","title":"1151115 聰賢老師 · AI 歷史劇創作 × Google Flow 旗艦實戰平台","desc":"1151115 聰賢老師 · AI 歷史劇創作 × Google Flow 旗艦實戰平台（九大歷史名劇 · 40人物Prompt生成器 · 107頁簡報演講廳 · 門禁密碼: nato）","pagesUrl":"https://yaoshuchin.github.io/1151115-ai-historical-drama/","repoUrl":"https://github.com/yaoshuchin/1151115-ai-historical-drama","date":"115.11.15","category":"AI教學與行政賦能","categoryKey":"ai","badgeColor":"indigo","icon":"fa-robot"},{"id":74,"name":"1151115-tsanghsien-video-reverse","title":"1151115 聰賢老師 · AI 影片逆向工程 × Google Flow 實戰研習旗艦平台","desc":"1151115 聰賢老師 · AI 影片逆向工程 × Google Flow 實戰展示平台（42頁簡報 · 白板標記 · 首尾幀結構回推對比 · 影音藝廊 · 門禁防護版）","pagesUrl":"https://yaoshuchin.github.io/1151115-tsanghsien-video-reverse/","repoUrl":"https://github.com/yaoshuchin/1151115-tsanghsien-video-reverse","date":"115.11.15","category":"研習數位典藏與看板","categoryKey":"archives","badgeColor":"purple","icon":"fa-box-archive"},{"id":75,"name":"1151114-notion-edcafe-science","title":"簡子惠老師・AI 融入課堂教學與自然科差異化教學平台 | 康乃薾國中","desc":"簡子惠老師（康乃薾國中）教育版 ChatGPT - Edcafe 融入課堂教學 & 自然科 AI 差異化教學知識庫（翻轉教室 2.0 · 門禁密碼: nato）","pagesUrl":"https://yaoshuchin.github.io/1151114-notion-edcafe-science/","repoUrl":"https://github.com/yaoshuchin/1151114-notion-edcafe-science","date":"115.11.14","category":"創新教案與公開觀課","categoryKey":"curriculum","badgeColor":"emerald","icon":"fa-chalkboard-user"},{"id":76,"name":"1151114-scam-game","title":"假訊息判讀挑戰（2025年後10題）","desc":"假訊息判讀挑戰（2025年後10題）· 互動式防詐找碴挑戰與成績證書系統（門禁密碼: 049）","pagesUrl":"https://yaoshuchin.github.io/1151114-scam-game/","repoUrl":"https://github.com/yaoshuchin/1151114-scam-game","date":"115.11.14","category":"互動教材與數位工具","categoryKey":"tools","badgeColor":"amber","icon":"fa-gamepad"},{"id":77,"name":"1151114-stop-iq-online","title":"STOP麥擱騙! 我智商在線 · 研習數位典藏鏡像站","desc":"STOP麥擱騙! 我智商在線 · 李宜玲老師研習看板數位典藏鏡像站（5大分區 · 25篇貼文 · 28份實體離線圖影 · 完整本機典藏）","pagesUrl":"https://yaoshuchin.github.io/1151114-stop-iq-online/","repoUrl":"https://github.com/yaoshuchin/1151114-stop-iq-online","date":"115.11.14","category":"研習數位典藏與看板","categoryKey":"archives","badgeColor":"purple","icon":"fa-box-archive"},{"id":78,"name":"1151114-yuchi-elderly-digital","title":"教育部南投縣樂齡學習數位示範體驗場域（魚池）- 魚池數位中心與訪視輔導展示系統","desc":"教育部南投縣樂齡學習數位示範體驗場域（魚池）第二次訪視輔導網頁化展示系統（A成果網頁 · B問答模式 · C簡報模式 · 門禁密碼: 049）","pagesUrl":"https://yaoshuchin.github.io/1151114-yuchi-elderly-digital/","repoUrl":"https://github.com/yaoshuchin/1151114-yuchi-elderly-digital","date":"115.11.14","category":"AI教學與行政賦能","categoryKey":"ai","badgeColor":"indigo","icon":"fa-robot"},{"id":79,"name":"1151113-liangliang-video-skill","title":"我用 Skill 建置影片｜阿亮老師","desc":"我用 Skill 建置影片｜阿亮老師（曾慶良）AI 實戰工作坊（16大單元 · 電子書閱讀器 · 影音生成遙控器 · 門禁防護版）","pagesUrl":"https://yaoshuchin.github.io/1151113-liangliang-video-skill/","repoUrl":"https://github.com/yaoshuchin/1151113-liangliang-video-skill","date":"115.11.13","category":"AI教學與行政賦能","categoryKey":"ai","badgeColor":"indigo","icon":"fa-robot"},{"id":80,"name":"1151113-nantou-art-eval","title":"115南投國中美術班評鑑 - 孕育一棵藝術大樹","desc":"南投國中及教育創新成果專案：1151113-nantou-art-eval。提供線上即時瀏覽與教育資源整合。","pagesUrl":"https://yaoshuchin.github.io/1151113-nantou-art-eval/","repoUrl":"https://github.com/yaoshuchin/1151113-nantou-art-eval","date":"115.11.13","category":"投中校務與班級成果","categoryKey":"campus","badgeColor":"blue","icon":"fa-school"},{"id":81,"name":"1151112-hualien-dream-n-hongyan","title":"點亮備課、運課與回饋的Agent技能樹｜完整數位典藏版","desc":"1151112 花蓮夢N紅焰「點亮備課、運課與回饋的Agent技能樹」完整典藏系統（全卡片與本機檔案完整收錄）","pagesUrl":"https://yaoshuchin.github.io/1151112-hualien-dream-n-hongyan/","repoUrl":"https://github.com/yaoshuchin/1151112-hualien-dream-n-hongyan","date":"115.11.12","category":"研習數位典藏與看板","categoryKey":"archives","badgeColor":"purple","icon":"fa-box-archive"},{"id":82,"name":"1151112-hualien-dream-n-yaoyao","title":"花蓮夢N｜生活科技與AI教學實作 雙專題數位典藏庫","desc":"1151112 花蓮夢N「生活科技與AI教學實作」雙專題完整典藏系統（姚老師小宮燈與尾翼老師生活科技AI · 42項本機教材完整收錄）","pagesUrl":"https://yaoshuchin.github.io/1151112-hualien-dream-n-yaoyao/","repoUrl":"https://github.com/yaoshuchin/1151112-hualien-dream-n-yaoyao","date":"115.11.12","category":"研習數位典藏與看板","categoryKey":"archives","badgeColor":"purple","icon":"fa-box-archive"},{"id":83,"name":"1151112-nantou-pohua-observation","title":"南投國中情緒調節課程公開課表分析 | 石伯華老師教學演示成果","desc":"1151112 南投國中石伯華老師情緒調節課程公開課評量分析與視覺化成果（13位教師觀課評鑑 · 門禁密碼: 049）","pagesUrl":"https://yaoshuchin.github.io/1151112-nantou-pohua-observation/","repoUrl":"https://github.com/yaoshuchin/1151112-nantou-pohua-observation","date":"115.11.12","category":"投中校務與班級成果","categoryKey":"campus","badgeColor":"blue","icon":"fa-school"},{"id":84,"name":"1151112-neuro-calm","title":"停止焦慮三大科學動作導引系統","desc":"停止焦慮三大科學動作導引系統（Neuro-Calm）· 神經科學實證身心調節互動網頁（南投國中輔導專頁 · 門禁密碼: 049）","pagesUrl":"https://yaoshuchin.github.io/1151112-neuro-calm/","repoUrl":"https://github.com/yaoshuchin/1151112-neuro-calm","date":"115.11.12","category":"投中校務與班級成果","categoryKey":"campus","badgeColor":"blue","icon":"fa-school"},{"id":85,"name":"1151112-tung-principal-love","title":"愛，讓孩子比昨天更優秀 - 董勳遠主任個人品牌暨116年國中校長甄選官網","desc":"愛，讓孩子比昨天更優秀 - 董勳遠主任個人官方網站。教育部杏壇芬芳獎、全國大愛菁師獎得主。打造一所不怕失敗、讓孩子擁有韌性與夢想的學校！","pagesUrl":"https://yaoshuchin.github.io/1151112-tung-principal-love/","repoUrl":"https://github.com/yaoshuchin/1151112-tung-principal-love","date":"115.11.12","category":"投中校務與班級成果","categoryKey":"campus","badgeColor":"blue","icon":"fa-school"},{"id":86,"name":"1151112-twteachertraining","title":"Sci-Flipper 教師專業發展學習平台","desc":"Sci-Flipper 教師專業發展學習平台（GULLA 專業學習回饋系統 · 已解除密碼限制）","pagesUrl":"https://yaoshuchin.github.io/1151112-twteachertraining/","repoUrl":"https://github.com/yaoshuchin/1151112-twteachertraining","date":"115.11.12","category":"AI教學與行政賦能","categoryKey":"ai","badgeColor":"indigo","icon":"fa-robot"},{"id":87,"name":"1151111-liangliang-antivirus","title":"亮言資安守護中心 — 病毒防護・檢測・救援","desc":"亮言資安守護中心 — 極速守護者 VeloAegis v4.1（病毒防護・檢測・檔案救援 · 門禁密碼: nato）","pagesUrl":"https://yaoshuchin.github.io/1151111-liangliang-antivirus/","repoUrl":"https://github.com/yaoshuchin/1151111-liangliang-antivirus","date":"115.11.11","category":"AI教學與行政賦能","categoryKey":"ai","badgeColor":"indigo","icon":"fa-robot"},{"id":88,"name":"1151111-liangliang-mech-xai","title":"AI 融入機械與動力～機械零件數位化：以 3D Blender 打造虛擬實習展間｜阿亮老師","desc":"AI 融入機械與動力～機械零件數位化：以 3D Blender 打造虛擬實習展間｜阿亮老師（9大實作單元 · 3D互動模型 · 線上電子書 · 門禁密碼: nato）","pagesUrl":"https://yaoshuchin.github.io/1151111-liangliang-mech-xai/","repoUrl":"https://github.com/yaoshuchin/1151111-liangliang-mech-xai","date":"115.11.11","category":"互動教材與數位工具","categoryKey":"tools","badgeColor":"amber","icon":"fa-gamepad"},{"id":89,"name":"1151110-sunny-ai-exam-design","title":"如何運用AI設計考卷大解密｜佳釧老師","desc":"如何運用AI設計考卷大解密｜佳釧老師（AI協作考卷設計與實作指南 · 素養導向命題評量平台）","pagesUrl":"https://yaoshuchin.github.io/1151110-sunny-ai-exam-design/","repoUrl":"https://github.com/yaoshuchin/1151110-sunny-ai-exam-design","date":"115.11.10","category":"AI教學與行政賦能","categoryKey":"ai","badgeColor":"indigo","icon":"fa-robot"},{"id":90,"name":"1151109-ai-mv-studio","title":"AI 短片創作七階段教學工作台 | 互動式影片製作指南","desc":"1151109 AI 短片創作七階段教學工作台：7步驟流程引導 × 五大課堂提示詞生成器 × 互動式分鏡工作台","pagesUrl":"https://yaoshuchin.github.io/1151109-ai-mv-studio/","repoUrl":"https://github.com/yaoshuchin/1151109-ai-mv-studio","date":"115.11.09","category":"AI教學與行政賦能","categoryKey":"ai","badgeColor":"indigo","icon":"fa-robot"},{"id":91,"name":"1151109-claude-code-animation","title":"用 Claude Code 做教學動畫｜全套實作互動手冊","desc":"用 Claude Code 做教學動畫：六關實作手冊、24種動畫風格與旁白寫作指南 (密碼: nato)","pagesUrl":"https://yaoshuchin.github.io/1151109-claude-code-animation/","repoUrl":"https://github.com/yaoshuchin/1151109-claude-code-animation","date":"115.11.09","category":"AI教學與行政賦能","categoryKey":"ai","badgeColor":"indigo","icon":"fa-robot"},{"id":92,"name":"1151109-fengming-openclass","title":"鳳鳴國中 115.11.9 科技領域公開授課與觀議課訪視 數位成果旗艦專區","desc":"1151109 鳳鳴國中科技領域公開授課與觀議課數位成果專區（Matrix 機器人十線循跡感測器程式設計實戰）","pagesUrl":"https://yaoshuchin.github.io/1151109-fengming-openclass/","repoUrl":"https://github.com/yaoshuchin/1151109-fengming-openclass","date":"115.11.09","category":"創新教案與公開觀課","categoryKey":"curriculum","badgeColor":"emerald","icon":"fa-chalkboard-user"},{"id":93,"name":"1151109-funfun-ai-tools","title":"方方老師 教育AI工具箱","desc":"方方老師 教育AI工具箱（液態玻璃特效介面 · 門禁密碼: nato）","pagesUrl":"https://yaoshuchin.github.io/1151109-funfun-ai-tools/","repoUrl":"https://github.com/yaoshuchin/1151109-funfun-ai-tools","date":"115.11.09","category":"互動教材與數位工具","categoryKey":"tools","badgeColor":"amber","icon":"fa-gamepad"},{"id":94,"name":"1151109-teacher-exam-practice","title":"教師資格考試練習平台｜歷屆試題線上練習","desc":"教師資格考試練習平台（歷屆試題線上練習系統 · 94-115年完整題庫 · 密碼: nato）","pagesUrl":"https://yaoshuchin.github.io/1151109-teacher-exam-practice/","repoUrl":"https://github.com/yaoshuchin/1151109-teacher-exam-practice","date":"115.11.09","category":"AI教學與行政賦能","categoryKey":"ai","badgeColor":"indigo","icon":"fa-robot"},{"id":95,"name":"1151108-ai-notion-elevator","title":"AI 大樓：一張 Notion 鑰匙卡搭三台電梯","desc":"AI 大樓：一張 Notion 鑰匙卡搭三台電梯（Notion 整合權杖串接 Gemini CLI / Codex CLI / Claude Code）(密碼: nato)","pagesUrl":"https://yaoshuchin.github.io/1151108-ai-notion-elevator/","repoUrl":"https://github.com/yaoshuchin/1151108-ai-notion-elevator","date":"115.11.08","category":"AI教學與行政賦能","categoryKey":"ai","badgeColor":"indigo","icon":"fa-robot"},{"id":96,"name":"1151108-francefu-competition","title":"法蘭斯解題積木平台","desc":"法蘭斯解題積木平台（科技教育創意實作競賽資訊科技組）鏡像備份與密碼保護版 (密碼: nato)","pagesUrl":"https://yaoshuchin.github.io/1151108-francefu-competition/","repoUrl":"https://github.com/yaoshuchin/1151108-francefu-competition","date":"115.11.08","category":"互動教材與數位工具","categoryKey":"tools","badgeColor":"amber","icon":"fa-gamepad"},{"id":97,"name":"1151108-hualien-dream-n","title":"1151108 花蓮夢N｜AI導入教學實作與Agent研習資源網","desc":"1151108 花蓮夢N 研習課程資源導覽｜AI 導入生活科技與教學實作（門禁密碼: nato）","pagesUrl":"https://yaoshuchin.github.io/1151108-hualien-dream-n/","repoUrl":"https://github.com/yaoshuchin/1151108-hualien-dream-n","date":"115.11.08","category":"研習數位典藏與看板","categoryKey":"archives","badgeColor":"purple","icon":"fa-box-archive"},{"id":98,"name":"1151105-gemini-google-sheets","title":"效率飆十倍！當你的 Google 試算表加上 Gemini！研習實戰教學講義","desc":"1151105 茶米老師：效率飆十倍！當你的 Google 試算表加上 Gemini！研習實戰教學講義與操作指南","pagesUrl":"https://yaoshuchin.github.io/1151105-gemini-google-sheets/","repoUrl":"https://github.com/yaoshuchin/1151105-gemini-google-sheets","date":"115.11.05","category":"研習數位典藏與看板","categoryKey":"archives","badgeColor":"purple","icon":"fa-box-archive"},{"id":99,"name":"1151104-aliang-ai-game","title":"AI 輔助故障診斷、數據分析與程式應用｜阿亮老師","desc":"AI 輔助故障診斷、數據分析與程式應用｜阿亮老師 課程旗艦網站鏡像與互動遊戲平台","pagesUrl":"https://yaoshuchin.github.io/1151104-aliang-ai-game/","repoUrl":"https://github.com/yaoshuchin/1151104-aliang-ai-game","date":"115.11.04","category":"互動教材與數位工具","categoryKey":"tools","badgeColor":"amber","icon":"fa-gamepad"},{"id":100,"name":"1151102-google-ai-art-traditional-media","title":"Google AI 輔助藝術創作與銜接傳統媒材 · 6小時研習學員實作手冊與 Prompt 詠唱指南","desc":"Google AI 輔助藝術創作與銜接傳統媒材 · 6小時研習學員實作手冊與 Prompt 詠唱指南 (密碼: nato)","pagesUrl":"https://yaoshuchin.github.io/1151102-google-ai-art-traditional-media/","repoUrl":"https://github.com/yaoshuchin/1151102-google-ai-art-traditional-media","date":"115.11.02","category":"研習數位典藏與看板","categoryKey":"archives","badgeColor":"purple","icon":"fa-box-archive"},{"id":101,"name":"1151102-ntjh-calendar","title":"南投國中 115學年度第一學期行事曆","desc":"南投縣立南投國民中學 115學年度第一學期行事曆互動查詢系統與Excel工作簿","pagesUrl":"https://yaoshuchin.github.io/1151102-ntjh-calendar/","repoUrl":"https://github.com/yaoshuchin/1151102-ntjh-calendar","date":"115.11.02","category":"投中校務與班級成果","categoryKey":"campus","badgeColor":"blue","icon":"fa-school"},{"id":102,"name":"1151102-ntjh-tutor-meeting","title":"南投國中 115學年度第1學期 11月份（第2次）導師會報手冊","desc":"南投縣立南投國民中學 115學年度第1學期 11月份（第2次）導師會報電子手冊與處室標籤分類網頁系統（密碼：049）","pagesUrl":"https://yaoshuchin.github.io/1151102-ntjh-tutor-meeting/","repoUrl":"https://github.com/yaoshuchin/1151102-ntjh-tutor-meeting","date":"115.11.02","category":"投中校務與班級成果","categoryKey":"campus","badgeColor":"blue","icon":"fa-school"},{"id":103,"name":"1151101-ai-anime-creation","title":"1151101 AI 動漫影片創作成果展示系統 | 訪視評鑑與教學成果 SPA","desc":"1151101 聰賢老師 · AI 動漫影片創作 × Google Flow 成果展示平台（四大原創動漫短片 · 107頁實務簡報 · 白板標記 · 門禁密碼: nato）","pagesUrl":"https://yaoshuchin.github.io/1151101-ai-anime-creation/","repoUrl":"https://github.com/yaoshuchin/1151101-ai-anime-creation","date":"115.11.01","category":"AI教學與行政賦能","categoryKey":"ai","badgeColor":"indigo","icon":"fa-robot"},{"id":104,"name":"1151101-ai-video-course","title":"AI 影片創作與生成式影音工具應用 · 呂聰賢老師研習旗艦網","desc":"1151101 呂聰賢老師 AI 影片創作與生成式影音工具應用 · 線上教學講義、全景心智圖、84頁雙風格簡報觀看器與實戰成果旗艦網","pagesUrl":"https://yaoshuchin.github.io/1151101-ai-video-course/","repoUrl":"https://github.com/yaoshuchin/1151101-ai-video-course","date":"115.11.01","category":"研習數位典藏與看板","categoryKey":"archives","badgeColor":"purple","icon":"fa-box-archive"},{"id":105,"name":"1151031-ai-drawing-lantern","title":"1151031AI繪圖-小宮燈實作 成果網站 | 陽明生活科技教室","desc":"1151031AI繪圖-小宮燈實作 成果網站","pagesUrl":"https://yaoshuchin.github.io/1151031-ai-drawing-lantern/","repoUrl":"https://github.com/yaoshuchin/1151031-ai-drawing-lantern","date":"115.10.31","category":"互動教材與數位工具","categoryKey":"tools","badgeColor":"amber","icon":"fa-gamepad"},{"id":106,"name":"1151030-bohua-sel-open-class","title":"石柏華公開觀議課 ｜ 南投國中 115學年度 SEL社會情緒學習公開授課與議課研討成果旗艦網","desc":"南投縣立南投國中 115學年度 專任輔導石柏華教師 SEL社會情緒學習公開授課與議課研討成果旗艦網（石柏華公開觀議課）","pagesUrl":"https://yaoshuchin.github.io/1151030-bohua-sel-open-class/","repoUrl":"https://github.com/yaoshuchin/1151030-bohua-sel-open-class","date":"115.10.30","category":"投中校務與班級成果","categoryKey":"campus","badgeColor":"blue","icon":"fa-school"},{"id":107,"name":"1151030-chami-art","title":"20261102 | 茶米投中美術班 - Share Bar 作品看板","desc":"1151030 茶米投中美術班 20261102 學生作品展示看板（189件作品典藏 · 門禁密碼: nato）","pagesUrl":"https://yaoshuchin.github.io/1151030-chami-art/","repoUrl":"https://github.com/yaoshuchin/1151030-chami-art","date":"115.10.30","category":"投中校務與班級成果","categoryKey":"campus","badgeColor":"blue","icon":"fa-school"},{"id":108,"name":"1151030-island-master","title":"我要當島主！從零開始，造島成真｜阿亮老師","desc":"我要當島主！從零開始，造島成真 (免密碼完整版 · 來自亮亮老師1151030)","pagesUrl":"https://yaoshuchin.github.io/1151030-island-master/","repoUrl":"https://github.com/yaoshuchin/1151030-island-master","date":"115.10.30","category":"互動教材與數位工具","categoryKey":"tools","badgeColor":"amber","icon":"fa-gamepad"}];
 
-    let currentCategory = '全部';
-    let isTableView = false;
+    // 系統狀態
+    const STATE = {
+      search: '',
+      category: 'all',
+      sort: 'date-desc',
+      viewMode: 'grid',
+      favorites: JSON.parse(localStorage.getItem('ntjh_hub_favs') || '[]'),
+      currentQrUrl: ''
+    };
 
-    // 密碼驗證邏輯 (通關密碼: nato)
-    function handleUnlock(e) {
-      if (e && e.preventDefault) e.preventDefault();
-      const input = document.getElementById('pwdInput').value.trim();
-      if (input.toLowerCase() === 'nato') {
-        sessionStorage.setItem('nantou_portal_auth', 'unlocked');
-        unlockUI();
+    // 分類配置
+    const CATEGORIES = [
+      { key: 'all', name: '全部站點', icon: 'fa-globe', count: ALL_PROJECTS.length },
+      { key: 'campus', name: '投中校務與班級', icon: 'fa-school', count: ALL_PROJECTS.filter(p => p.categoryKey === 'campus').length },
+      { key: 'ai', name: 'AI教學與行政賦能', icon: 'fa-robot', count: ALL_PROJECTS.filter(p => p.categoryKey === 'ai').length },
+      { key: 'curriculum', name: '創新教案與公開課', icon: 'fa-chalkboard-user', count: ALL_PROJECTS.filter(p => p.categoryKey === 'curriculum').length },
+      { key: 'archives', name: '研習典藏與看板', icon: 'fa-box-archive', count: ALL_PROJECTS.filter(p => p.categoryKey === 'archives').length },
+      { key: 'tools', name: '互動教材與數位工具', icon: 'fa-gamepad', count: ALL_PROJECTS.filter(p => p.categoryKey === 'tools').length },
+      { key: 'favorites', name: '常用收藏', icon: 'fa-star', count: 0 }
+    ];
+
+    // 初始化執行
+    document.addEventListener('DOMContentLoaded', () => {
+      checkAuth();
+      renderCategoryTabs();
+      updateFavoriteCount();
+      renderProjects();
+      setupScrollListener();
+    });
+
+    // 1. 門禁驗證機制 (nato)
+    function checkAuth() {
+      const unlocked = sessionStorage.getItem('ntjh_hub_unlocked');
+      const modal = document.getElementById('passwordModal');
+      if (unlocked === 'true') {
+        modal.classList.add('hidden');
       } else {
-        const box = document.getElementById('modalBox');
-        box.classList.remove('shake');
-        void box.offsetWidth;
-        box.classList.add('shake');
-        document.getElementById('errorMsg').classList.remove('hidden');
-        document.getElementById('pwdInput').select();
+        modal.classList.remove('hidden');
+        setTimeout(() => document.getElementById('pwdInput').focus(), 150);
       }
     }
 
-    function unlockUI() {
-      const modal = document.getElementById('passwordModal');
-      const content = document.getElementById('mainContent');
-      modal.classList.add('opacity-0', 'pointer-events-none');
-      content.classList.remove('opacity-0', 'pointer-events-none');
-      renderCards();
+    function handleUnlock(e) {
+      if (e) e.preventDefault();
+      const input = document.getElementById('pwdInput');
+      const errorMsg = document.getElementById('errorMsg');
+      const modalBox = document.getElementById('modalBox');
+
+      if (input.value.trim().toLowerCase() === 'nato') {
+        sessionStorage.setItem('ntjh_hub_unlocked', 'true');
+        document.getElementById('passwordModal').classList.add('opacity-0', 'pointer-events-none');
+        setTimeout(() => {
+          document.getElementById('passwordModal').classList.add('hidden');
+        }, 300);
+        showToast('門禁驗證成功，歡迎使用！', 'success');
+      } else {
+        errorMsg.classList.remove('hidden');
+        modalBox.classList.add('shake');
+        setTimeout(() => modalBox.classList.remove('shake'), 400);
+        input.value = '';
+        input.focus();
+      }
     }
 
     function lockSession() {
-      sessionStorage.removeItem('nantou_portal_auth');
-      window.location.reload();
+      sessionStorage.removeItem('ntjh_hub_unlocked');
+      location.reload();
     }
 
-    function togglePasswordVisibility() {
-      const input = document.getElementById('pwdInput');
-      const icon = document.getElementById('eyeIcon');
-      if (input.type === 'password') {
-        input.type = 'text';
-        icon.classList.replace('fa-eye', 'fa-eye-slash');
-      } else {
-        input.type = 'password';
-        icon.classList.replace('fa-eye-slash', 'fa-eye');
-      }
-    }
-
-    // 初始化狀態檢測
-    window.addEventListener('DOMContentLoaded', () => {
-      if (sessionStorage.getItem('nantou_portal_auth') === 'unlocked') {
-        unlockUI();
-      }
-    });
-
-    // 篩選與排序邏輯
-    function setCategory(cat) {
-      currentCategory = cat;
-      document.querySelectorAll('.cat-pill').forEach(btn => {
-        if (btn.getAttribute('data-cat') === cat) {
-          btn.className = 'cat-pill active px-3.5 py-1.5 rounded-lg text-xs font-bold transition bg-indigo-600 text-white shadow-sm';
-        } else {
-          btn.className = 'cat-pill px-3.5 py-1.5 rounded-lg text-xs font-semibold text-slate-600 hover:bg-slate-100 transition';
-        }
-      });
-      renderCards();
-    }
-
-    function toggleViewMode() {
-      isTableView = !isTableView;
-      const cardsGrid = document.getElementById('cardsGrid');
-      const tableView = document.getElementById('tableView');
-      const viewIcon = document.getElementById('viewIcon');
-      const viewText = document.getElementById('viewText');
-
-      if (isTableView) {
-        cardsGrid.classList.add('hidden');
-        tableView.classList.remove('hidden');
-        viewIcon.className = 'fa-solid fa-list';
-        viewText.innerText = '清單檢視';
-      } else {
-        cardsGrid.classList.remove('hidden');
-        tableView.classList.add('hidden');
-        viewIcon.className = 'fa-solid fa-table-cells-large';
-        viewText.innerText = '卡片檢視';
-      }
-      renderCards();
-    }
-
-    function getFilteredProjects() {
-      const q = document.getElementById('searchInput').value.trim().toLowerCase();
-      const sort = document.getElementById('sortSelect').value;
-
-      let list = projects.filter(p => {
-        const matchCat = (currentCategory === '全部' || p.category === currentCategory);
-        const matchQuery = !q || 
-          p.folderName.toLowerCase().includes(q) || 
-          p.title.toLowerCase().includes(q) || 
-          p.pagesUrl.toLowerCase().includes(q);
-        return matchCat && matchQuery;
-      });
-
-      if (sort === 'date-desc') {
-        list.sort((a, b) => b.folderName.localeCompare(a.folderName, 'zh-Hant'));
-      } else if (sort === 'date-asc') {
-        list.sort((a, b) => a.folderName.localeCompare(b.folderName, 'zh-Hant'));
-      } else if (sort === 'title-asc') {
-        list.sort((a, b) => a.title.localeCompare(b.title, 'zh-Hant'));
-      }
-
-      return list;
-    }
-
-    function copyToClipboard(url, name) {
-      navigator.clipboard.writeText(url).then(() => {
-        showToast('已複製「' + name + '」網址！');
-      }).catch(() => {
-        showToast('網址：' + url);
-      });
-    }
-
-    function showToast(msg) {
-      const toast = document.getElementById('toast');
-      const toastMsg = document.getElementById('toastMsg');
-      toastMsg.innerText = msg;
-      toast.classList.remove('translate-y-16', 'opacity-0');
-      setTimeout(() => {
-        toast.classList.add('translate-y-16', 'opacity-0');
-      }, 2500);
-    }
-
-    function renderCards() {
-      const list = getFilteredProjects();
-      const visibleCount = document.getElementById('visibleCount');
-      const noResults = document.getElementById('noResults');
-      const grid = document.getElementById('cardsGrid');
-      const tableBody = document.getElementById('tableBody');
-
-      visibleCount.innerText = list.length;
-
-      if (list.length === 0) {
-        noResults.classList.remove('hidden');
-        grid.innerHTML = '';
-        tableBody.innerHTML = '';
-        return;
-      } else {
-        noResults.classList.add('hidden');
-      }
-
-      // 卡片渲染
-      grid.innerHTML = list.map(item => {
-        const catColorClass = item.color === 'indigo' ? 'bg-indigo-50 text-indigo-700 border-indigo-200' :
-                              item.color === 'emerald' ? 'bg-emerald-50 text-emerald-700 border-emerald-200' :
-                              item.color === 'amber' ? 'bg-amber-50 text-amber-700 border-amber-200' :
-                              'bg-blue-50 text-blue-700 border-blue-200';
+    // 2. 分類標籤切換
+    function renderCategoryTabs() {
+      const container = document.getElementById('categoryTabs');
+      container.innerHTML = CATEGORIES.map(cat => {
+        const isActive = STATE.category === cat.key;
+        const activeClass = isActive 
+          ? 'bg-indigo-600 text-white shadow-md shadow-indigo-200' 
+          : 'bg-slate-100 text-slate-600 hover:bg-slate-200';
         return `
-          <div class="glass-card rounded-2xl p-6 flex flex-col justify-between group">
-            <div>
-              <!-- 頂部標籤 -->
-              <div class="flex items-center justify-between gap-2 mb-3">
-                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11px] font-bold border ${catColorClass}">
-                  <span class="w-1.5 h-1.5 rounded-full bg-current"></span>
-                  ${item.category}
-                </span>
-                <span class="text-[11px] font-mono text-slate-400 bg-slate-100 px-2 py-0.5 rounded">
-                  ${item.date}
-                </span>
-              </div>
+          <button 
+            onclick="setCategory('${cat.key}')" 
+            class="px-3.5 py-2 rounded-2xl flex items-center gap-1.5 whitespace-nowrap transition cursor-pointer ${activeClass}"
+          >
+            <i class="fa-solid ${cat.icon} text-xs"></i>
+            <span>${cat.name}</span>
+            <span class="text-[11px] px-1.5 py-0.2 rounded-full ${isActive ? 'bg-white/20 text-white' : 'bg-slate-200 text-slate-600'}" id="cat-count-${cat.key}">
+              ${cat.count}
+            </span>
+          </button>
+        `;
+      }).join('');
+    }
 
-              <!-- 資料夾名稱 (使用者特別強調) -->
-              <div class="mb-2 flex items-start gap-2">
-                <i class="fa-regular fa-folder text-amber-500 mt-0.5 text-sm shrink-0"></i>
-                <div class="font-mono text-xs font-bold text-slate-500 break-all bg-slate-50 px-2 py-1 rounded border border-slate-200/60 w-full">
-                  ${item.folderName}
+    function setCategory(key) {
+      STATE.category = key;
+      renderCategoryTabs();
+      renderProjects();
+    }
+
+    // 3. 搜尋與排序
+    function handleSearch() {
+      STATE.search = document.getElementById('searchInput').value.trim().toLowerCase();
+      const clearBtn = document.getElementById('clearSearchBtn');
+      if (STATE.search) {
+        clearBtn.classList.remove('hidden');
+      } else {
+        clearBtn.classList.add('hidden');
+      }
+      renderProjects();
+    }
+
+    function clearSearch() {
+      document.getElementById('searchInput').value = '';
+      STATE.search = '';
+      document.getElementById('clearSearchBtn').classList.add('hidden');
+      renderProjects();
+    }
+
+    function handleSort() {
+      STATE.sort = document.getElementById('sortSelect').value;
+      renderProjects();
+    }
+
+    function setViewMode(mode) {
+      STATE.viewMode = mode;
+      const gridBtn = document.getElementById('viewGridBtn');
+      const listBtn = document.getElementById('viewListBtn');
+      const gridContainer = document.getElementById('gridContainer');
+      const listContainer = document.getElementById('listContainer');
+
+      if (mode === 'grid') {
+        gridBtn.className = 'px-3 py-2 rounded-xl text-xs sm:text-sm font-bold bg-white text-indigo-700 shadow-sm transition';
+        listBtn.className = 'px-3 py-2 rounded-xl text-xs sm:text-sm font-semibold text-slate-500 hover:text-slate-800 transition';
+        gridContainer.classList.remove('hidden');
+        listContainer.classList.add('hidden');
+      } else {
+        listBtn.className = 'px-3 py-2 rounded-xl text-xs sm:text-sm font-bold bg-white text-indigo-700 shadow-sm transition';
+        gridBtn.className = 'px-3 py-2 rounded-xl text-xs sm:text-sm font-semibold text-slate-500 hover:text-slate-800 transition';
+        gridContainer.classList.add('hidden');
+        listContainer.classList.remove('hidden');
+      }
+      renderProjects();
+    }
+
+    // 4. 收藏機制
+    function toggleFavorite(id) {
+      const idx = STATE.favorites.indexOf(id);
+      if (idx > -1) {
+        STATE.favorites.splice(idx, 1);
+        showToast('已自收藏中移除', 'info');
+      } else {
+        STATE.favorites.push(id);
+        showToast('已加入常用收藏！', 'success');
+      }
+      localStorage.setItem('ntjh_hub_favs', JSON.stringify(STATE.favorites));
+      updateFavoriteCount();
+      renderProjects();
+    }
+
+    function updateFavoriteCount() {
+      const count = STATE.favorites.length;
+      document.getElementById('statFavorites').textContent = count;
+      const favCat = CATEGORIES.find(c => c.key === 'favorites');
+      if (favCat) favCat.count = count;
+      const favBadge = document.getElementById('cat-count-favorites');
+      if (favBadge) favBadge.textContent = count;
+    }
+
+    // 5. 資料篩選與渲染
+    function getFilteredProjects() {
+      return ALL_PROJECTS.filter(p => {
+        // 分類過濾
+        if (STATE.category === 'favorites') {
+          if (!STATE.favorites.includes(p.id)) return false;
+        } else if (STATE.category !== 'all') {
+          if (p.categoryKey !== STATE.category) return false;
+        }
+
+        // 搜尋關鍵字過濾
+        if (STATE.search) {
+          const matchTitle = p.title.toLowerCase().includes(STATE.search);
+          const matchDesc = p.desc.toLowerCase().includes(STATE.search);
+          const matchName = p.name.toLowerCase().includes(STATE.search);
+          const matchDate = p.date.toLowerCase().includes(STATE.search);
+          const matchCat = p.category.toLowerCase().includes(STATE.search);
+          if (!matchTitle && !matchDesc && !matchName && !matchDate && !matchCat) {
+            return false;
+          }
+        }
+
+        return true;
+      }).sort((a, b) => {
+        if (STATE.sort === 'date-desc') return b.date.localeCompare(a.date, 'zh-Hant');
+        if (STATE.sort === 'date-asc') return a.date.localeCompare(b.date, 'zh-Hant');
+        if (STATE.sort === 'name-asc') return a.name.localeCompare(b.name, 'zh-Hant');
+        if (STATE.sort === 'title-asc') return a.title.localeCompare(b.title, 'zh-Hant');
+        return 0;
+      });
+    }
+
+    function renderProjects() {
+      const filtered = getFilteredProjects();
+      const gridContainer = document.getElementById('gridContainer');
+      const listTableBody = document.getElementById('listTableBody');
+      const noResults = document.getElementById('noResults');
+      const showingCount = document.getElementById('showingCount');
+
+      showingCount.textContent = filtered.length;
+
+      if (filtered.length === 0) {
+        gridContainer.innerHTML = '';
+        listTableBody.innerHTML = '';
+        noResults.classList.remove('hidden');
+        return;
+      }
+      noResults.classList.add('hidden');
+
+      // 渲染網格卡片
+      gridContainer.innerHTML = filtered.map(p => {
+        const isFav = STATE.favorites.includes(p.id);
+        const badgeClass = 'badge-' + p.categoryKey;
+        return `
+          <div class="glass-card rounded-3xl p-5 flex flex-col justify-between relative group">
+            <div>
+              <!-- 頂部資訊與收藏 -->
+              <div class="flex items-center justify-between mb-3 text-xs">
+                <span class="px-2.5 py-1 rounded-xl font-bold flex items-center gap-1.5 ${badgeClass}">
+                  <i class="fa-solid ${p.icon}"></i> ${p.category}
+                </span>
+                <div class="flex items-center gap-1">
+                  <span class="text-slate-400 font-mono text-[11px]">${p.date}</span>
+                  <button 
+                    onclick="toggleFavorite(${p.id})" 
+                    class="w-7 h-7 rounded-lg flex items-center justify-center transition ${isFav ? 'text-amber-500 bg-amber-50' : 'text-slate-300 hover:text-amber-500'}"
+                    title="${isFav ? '取消收藏' : '加入收藏'}"
+                  >
+                    <i class="${isFav ? 'fa-solid' : 'fa-regular'} fa-star text-sm"></i>
+                  </button>
                 </div>
               </div>
 
-              <!-- 網站標題 -->
-              <h3 class="text-base font-extrabold text-slate-900 group-hover:text-indigo-600 transition mb-3 line-clamp-2 leading-snug">
-                <a href="${item.pagesUrl}" target="_blank" rel="noopener noreferrer">
-                  ${item.title}
-                </a>
+              <!-- 標題 -->
+              <h3 class="text-base font-bold text-slate-800 group-hover:text-indigo-600 transition duration-200 line-clamp-2 mb-2">
+                ${p.title}
               </h3>
 
-              <!-- 網址顯示框 -->
-              <div class="mb-4">
-                <div class="text-[11px] text-slate-400 font-medium mb-1">GitHub Pages 網址：</div>
-                <a 
-                  href="${item.pagesUrl}" 
-                  target="_blank" 
-                  class="block text-xs font-mono text-blue-600 hover:text-blue-800 break-all bg-blue-50/50 hover:bg-blue-50 px-2.5 py-1.5 rounded border border-blue-100 transition"
-                >
-                  ${item.pagesUrl}
-                </a>
-              </div>
+              <!-- 簡介摘要 -->
+              <p class="text-xs text-slate-500 line-clamp-3 leading-relaxed mb-4">
+                ${p.desc}
+              </p>
             </div>
 
-            <!-- 底部動作按鈕 -->
-            <div class="pt-4 border-t border-slate-100 flex items-center justify-between gap-2">
+            <!-- 底部動作工具列 -->
+            <div class="pt-4 border-t border-slate-100 flex items-center justify-between gap-1.5">
+              <!-- 前往網站 -->
               <a 
-                href="${item.pagesUrl}" 
+                href="${p.pagesUrl}" 
                 target="_blank" 
-                rel="noopener noreferrer" 
-                class="flex-1 py-2 px-3 bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-700 hover:to-blue-700 text-white rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 shadow-sm active:scale-95 transition"
+                rel="noopener noreferrer"
+                class="flex-1 py-2 px-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold rounded-xl text-xs shadow-sm transition flex items-center justify-center gap-1"
               >
-                <span>開啟網站</span>
+                <span>開啟站點</span>
                 <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
               </a>
 
+              <!-- 預覽 -->
               <button 
-                onclick="copyToClipboard('${item.pagesUrl}', '${item.folderName}')" 
-                class="p-2 text-slate-500 hover:text-slate-700 hover:bg-slate-100 rounded-xl transition border border-slate-200" 
-                title="複製 GitHub Pages 網址"
+                onclick="openPreview('${p.pagesUrl}', '${escapeHtml(p.title)}')"
+                class="w-8 h-8 rounded-xl bg-slate-100 hover:bg-indigo-50 text-slate-600 hover:text-indigo-600 flex items-center justify-center text-xs transition"
+                title="站內即時預覽"
               >
-                <i class="fa-regular fa-copy text-sm"></i>
+                <i class="fa-solid fa-eye"></i>
               </button>
 
+              <!-- QR Code -->
+              <button 
+                onclick="openQrModal('${p.pagesUrl}', '${escapeHtml(p.title)}')"
+                class="w-8 h-8 rounded-xl bg-slate-100 hover:bg-indigo-50 text-slate-600 hover:text-indigo-600 flex items-center justify-center text-xs transition"
+                title="產生行動 QR Code"
+              >
+                <i class="fa-solid fa-qrcode"></i>
+              </button>
+
+              <!-- 複製網址 -->
+              <button 
+                onclick="copyToClipboard('${p.pagesUrl}')"
+                class="w-8 h-8 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center text-xs transition"
+                title="複製網址"
+              >
+                <i class="fa-regular fa-copy"></i>
+              </button>
+
+              <!-- GitHub Repo -->
               <a 
-                href="${item.repoUrl}" 
+                href="${p.repoUrl}" 
                 target="_blank" 
-                rel="noopener noreferrer" 
-                class="p-2 text-slate-500 hover:text-slate-700 hover:bg-slate-100 rounded-xl transition border border-slate-200" 
-                title="檢視 GitHub 原始碼庫"
+                rel="noopener noreferrer"
+                class="w-8 h-8 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center text-xs transition"
+                title="查看 GitHub 原始碼"
               >
                 <i class="fa-brands fa-github text-sm"></i>
               </a>
@@ -771,32 +735,142 @@
         `;
       }).join('');
 
-      // 表格渲染
-      tableBody.innerHTML = list.map((item, index) => `
-        <tr class="hover:bg-slate-50 transition">
-          <td class="px-5 py-4 font-mono text-slate-400">${index + 1}</td>
-          <td class="px-5 py-4 font-mono font-bold text-slate-700 text-xs">${item.folderName}</td>
-          <td class="px-5 py-4">
-            <div class="font-bold text-slate-900">${item.title}</div>
-            <span class="inline-block mt-1 text-[10px] px-2 py-0.5 rounded bg-slate-100 text-slate-600 font-semibold">${item.category}</span>
-          </td>
-          <td class="px-5 py-4 font-mono">
-            <a href="${item.pagesUrl}" target="_blank" class="text-indigo-600 hover:underline break-all">${item.pagesUrl}</a>
-          </td>
-          <td class="px-5 py-4 text-center">
-            <span class="inline-flex items-center gap-1 text-[11px] font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full">
-              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-              200 OK
-            </span>
-          </td>
-          <td class="px-5 py-4 text-right whitespace-nowrap">
-            <div class="flex items-center justify-end gap-2">
-              <a href="${item.pagesUrl}" target="_blank" class="px-2.5 py-1 bg-indigo-600 text-white rounded-lg text-xs font-bold hover:bg-indigo-700">開啟</a>
-              <button onclick="copyToClipboard('${item.pagesUrl}', '${item.folderName}')" class="p-1.5 text-slate-500 hover:bg-slate-100 rounded-lg"><i class="fa-regular fa-copy"></i></button>
-            </div>
-          </td>
-        </tr>
-      `).join('');
+      // 渲染條列表格
+      listTableBody.innerHTML = filtered.map((p, idx) => {
+        const isFav = STATE.favorites.includes(p.id);
+        const badgeClass = 'badge-' + p.categoryKey;
+        return `
+          <tr class="hover:bg-slate-50/80 transition">
+            <td class="py-3 px-4 text-center text-xs text-slate-400 font-mono">${idx + 1}</td>
+            <td class="py-3 px-4">
+              <div class="flex items-start gap-2">
+                <button onclick="toggleFavorite(${p.id})" class="mt-0.5 ${isFav ? 'text-amber-500' : 'text-slate-300 hover:text-amber-500'}">
+                  <i class="${isFav ? 'fa-solid' : 'fa-regular'} fa-star text-xs"></i>
+                </button>
+                <div>
+                  <a href="${p.pagesUrl}" target="_blank" class="font-bold text-slate-800 hover:text-indigo-600 transition text-sm">
+                    ${p.title}
+                  </a>
+                  <p class="text-xs text-slate-400 font-mono mt-0.5">${p.name}</p>
+                </div>
+              </div>
+            </td>
+            <td class="py-3 px-4">
+              <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-xl text-xs font-bold ${badgeClass}">
+                <i class="fa-solid ${p.icon} text-[10px]"></i> ${p.category}
+              </span>
+            </td>
+            <td class="py-3 px-4 text-xs font-mono text-slate-500">${p.date}</td>
+            <td class="py-3 px-4 text-right">
+              <div class="inline-flex items-center gap-1.5">
+                <a href="${p.pagesUrl}" target="_blank" class="px-2.5 py-1 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-xs font-bold transition">
+                  開啟
+                </a>
+                <button onclick="openPreview('${p.pagesUrl}', '${escapeHtml(p.title)}')" class="p-1.5 bg-slate-100 hover:bg-slate-200 rounded-lg text-slate-600 text-xs transition" title="預覽">
+                  <i class="fa-solid fa-eye"></i>
+                </button>
+                <button onclick="openQrModal('${p.pagesUrl}', '${escapeHtml(p.title)}')" class="p-1.5 bg-slate-100 hover:bg-slate-200 rounded-lg text-slate-600 text-xs transition" title="QR Code">
+                  <i class="fa-solid fa-qrcode"></i>
+                </button>
+                <a href="${p.repoUrl}" target="_blank" class="p-1.5 bg-slate-100 hover:bg-slate-200 rounded-lg text-slate-600 text-xs transition" title="Repo">
+                  <i class="fa-brands fa-github"></i>
+                </a>
+              </div>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    // 6. QR Code 彈窗操作
+    let qrInstance = null;
+    function openQrModal(url, title) {
+      STATE.currentQrUrl = url;
+      document.getElementById('qrModalTitle').textContent = title;
+      document.getElementById('qrOpenBtn').href = url;
+      
+      const box = document.getElementById('qrcodeBox');
+      box.innerHTML = '';
+      qrInstance = new QRCode(box, {
+        text: url,
+        width: 180,
+        height: 180,
+        colorDark: "#1e1b4b",
+        colorLight: "#ffffff",
+        correctLevel: QRCode.CorrectLevel.M
+      });
+
+      document.getElementById('qrModal').classList.remove('hidden');
+    }
+
+    function closeQrModal() {
+      document.getElementById('qrModal').classList.add('hidden');
+    }
+
+    function copyCurrentQrUrl() {
+      if (STATE.currentQrUrl) {
+        copyToClipboard(STATE.currentQrUrl);
+      }
+    }
+
+    // 7. 站內預覽彈窗 (Iframe)
+    function openPreview(url, title) {
+      document.getElementById('previewModalTitle').textContent = title;
+      document.getElementById('previewModalUrl').textContent = url;
+      document.getElementById('previewOpenTabBtn').href = url;
+      document.getElementById('previewLoading').classList.remove('hidden');
+      document.getElementById('previewIframe').src = url;
+      document.getElementById('previewModal').classList.remove('hidden');
+    }
+
+    function closePreviewModal() {
+      document.getElementById('previewIframe').src = '';
+      document.getElementById('previewModal').classList.add('hidden');
+    }
+
+    // 8. 複製與 Toast 提示
+    function copyToClipboard(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        showToast('已複製網址到剪貼簿！', 'success');
+      }).catch(() => {
+        showToast('複製失敗，請手動複製', 'error');
+      });
+    }
+
+    function showToast(msg, type = 'success') {
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toastMsg');
+      const toastIcon = document.getElementById('toastIcon');
+
+      toastMsg.textContent = msg;
+      if (type === 'success') {
+        toastIcon.className = 'fa-solid fa-circle-check text-emerald-400';
+      } else if (type === 'error') {
+        toastIcon.className = 'fa-solid fa-circle-xmark text-rose-400';
+      } else {
+        toastIcon.className = 'fa-solid fa-circle-info text-sky-400';
+      }
+
+      toast.classList.remove('translate-y-20', 'opacity-0');
+      setTimeout(() => {
+        toast.classList.add('translate-y-20', 'opacity-0');
+      }, 2500);
+    }
+
+    // 9. 回頂部按鈕監聽
+    function setupScrollListener() {
+      const btn = document.getElementById('backToTopBtn');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+          btn.classList.remove('translate-y-20', 'opacity-0');
+        } else {
+          btn.classList.add('translate-y-20', 'opacity-0');
+        }
+      });
+    }
+
+    function escapeHtml(str) {
+      return (str || '').replace(/'/g, "\\'");
     }
   </script>
 </body>
