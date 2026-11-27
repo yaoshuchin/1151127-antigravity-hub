@@ -94,7 +94,7 @@ const htmlContent = `<!DOCTYPE html>
         此站點整合本地 <code class="bg-slate-100 px-2 py-0.5 rounded text-indigo-600 font-mono text-xs">D:\\antigravity</code> 已發布之 GitHub 專案。<br>請輸入存取密碼以繼續瀏覽。
       </p>
 
-      <form id="pwdForm" onsubmit="handleUnlock(event)" class="space-y-4">
+      <form id="pwdForm" onsubmit="handleUnlock(event); return false;" class="space-y-4">
         <div class="relative">
           <input 
             type="password" 
@@ -120,8 +120,9 @@ const htmlContent = `<!DOCTYPE html>
         </div>
 
         <button 
-          type="submit" 
-          class="w-full py-3.5 px-6 bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-700 hover:to-blue-700 text-white font-bold rounded-xl shadow-lg shadow-indigo-500/25 active:scale-[0.98] transition flex items-center justify-center gap-2"
+          type="button" 
+          onclick="handleUnlock(event)" 
+          class="w-full py-3.5 px-6 bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-700 hover:to-blue-700 text-white font-bold rounded-xl shadow-lg shadow-indigo-500/25 active:scale-[0.98] transition flex items-center justify-center gap-2 cursor-pointer"
         >
           <span>驗證並進入</span>
           <i class="fa-solid fa-arrow-right text-sm"></i>
@@ -360,7 +361,7 @@ const htmlContent = `<!DOCTYPE html>
 
     // 密碼驗證邏輯 (通關密碼: nato)
     function handleUnlock(e) {
-      e.preventDefault();
+      if (e && e.preventDefault) e.preventDefault();
       const input = document.getElementById('pwdInput').value.trim();
       if (input.toLowerCase() === 'nato') {
         sessionStorage.setItem('nantou_portal_auth', 'unlocked');
